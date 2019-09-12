@@ -96,9 +96,7 @@ class Comment {
         //     this.hide();
         // });
     }
-    empty () {
-        this.player.template.commentInput.value = '';
-    }
+   
 }
 
 export default Comment;

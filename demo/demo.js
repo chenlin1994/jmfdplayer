@@ -13,7 +13,15 @@ requestAnimationFrame(animate);
 
 initPlayers();
 handleEvent();
-
+function reload () {
+    window.dp1.reload();
+}
+function empty () {
+    window.dp1.empty();
+}
+function speed (number) {
+    window.dp1.danmaku.speed(number);
+}
 function handleEvent () {
     document.getElementById('dplayer-dialog').addEventListener('click', (e) => {
         const $clickDom = e.currentTarget;
@@ -57,6 +65,7 @@ function initPlayers () {
                 icon_pause:'',  // 暂停图标
                 icon_play:'',   // 播放图标
                 callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
+                    console.log('========play=========');
                     console.log(obj);
                 }
             },
@@ -68,6 +77,7 @@ function initPlayers () {
             fullScreen:{  // 全屏
                 icon:'',
                 callback: (obj) => {
+                    console.log('========fullScreen=============');
                     console.log(obj);
                 }
             },
@@ -85,25 +95,28 @@ function initPlayers () {
             screenshot:{  // 截图
                 icon:'',
                 callback: (obj) => {
+                    console.log('========screenshot=============');
                     console.log(obj);
                 }
             },
             subtitle:{  // 字幕
                 icon:'',
                 callback: (obj) => {
+                    console.log('========subtitle=============');
                     console.log(obj);
                 }
             },
             webFullScreen:{  // 网页全屏
                 icon:'',
                 callback:(obj) => {
+                    console.log('========webFullScreen=============');
                     console.log(obj);
                 }
             }
         },
         video: {
             quality:[
-                {name:'超清', url:'http://txplay.qiuhui.com/live/100107.flv', number:0, type:'auto'},
+                {name:'超清', url:'http://txplay.qiuhui.com/live/1001071.flv', number:0, type:'auto'},
                 {name:'高清', url:'http://txplay.qiuhui.com/live/100107_hd.flv', number:1, type:'auto'},
                 {name:'标清', url:'http://txplay.qiuhui.com/live/100107_ld.flv', number:2, type:'auto'}
             ],
@@ -113,7 +126,7 @@ function initPlayers () {
             bottom:'20px',
             top:'20px'
         },
-        contextmenu: [],
+        // contextmenu: [],
     });
     let a = 1;
     setInterval(() => {
@@ -125,14 +138,25 @@ function initPlayers () {
     }, 0);
 
     window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
+        console.log('============sendComment=============');
         console.log(message);
     });
 
     window.dp1.on('error', (obj) => {
+        console.log('=========error===========');
         console.log(obj);
     });
-    window.dp1.on('error', (obj) => {
+    window.dp1.on('sourthError', (obj) => {
+        console.log('=======sourthError=======');
         console.log(obj);
+    });
+    window.dp1.on('reload', (quality) => {
+        console.log('===========reload=================');
+        console.log(quality);
+    });
+    window.dp1.on('sendComment', (quality) => {
+        console.log('===========sendComment============');
+        console.log(quality);
     });
 
 

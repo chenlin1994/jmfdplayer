@@ -179,10 +179,13 @@ class Controller {
     initFullButton () {
         this.player.template.browserFullButton && this.player.template.browserFullButton.addEventListener('click', () => {
             this.player.fullScreen.toggle('browser');
+            this.player.options.buttons.fullScreen.callback && this.player.options.buttons.fullScreen.callback(this);
+
         });
 
         this.player.template.webFullButton && this.player.template.webFullButton.addEventListener('click', () => {
             this.player.fullScreen.toggle('web');
+            this.player.options.buttons.webFullScreen.callback && this.player.options.buttons.webFullScreen.callback(this);
         });
     }
 
@@ -256,6 +259,7 @@ class Controller {
                 });
 
                 this.player.events.trigger('screenshot', dataURL);
+                this.player.options.buttons.screenshot.callback && this.player.options.buttons.screenshot.callback(this);
             });
         }
     }
@@ -275,6 +279,7 @@ class Controller {
 
             this.player.template.subtitleButton.addEventListener('click', () => {
                 this.player.subtitle.toggle();
+                this.player.options.buttons.subtitle.callback &&  this.player.options.buttons.subtitle.callback(this);
             });
         }
     }

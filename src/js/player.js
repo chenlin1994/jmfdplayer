@@ -198,6 +198,10 @@ class DPlayer {
         }
     }
 
+    empty () {
+        this.template.commentInput.value = '';
+    }
+
     /**
      * Pause video
      */
@@ -528,7 +532,7 @@ class DPlayer {
             pic:null,
             screenshot:this.options.buttons.screenshot,
             preload:'auto',
-            url:this.this.quality.url,
+            url:this.quality.url,
             subtitle:this.options.subtitle
         });
         const paused = this.video.paused;
