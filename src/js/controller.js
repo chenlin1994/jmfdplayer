@@ -5,7 +5,6 @@ import Icons from './icons';
 class Controller {
     constructor (player) {
         this.player = player;
-
         this.autoHideTimer = 0;
         if (!utils.isMobile) {
             this.player.container.addEventListener('mousemove', () => {

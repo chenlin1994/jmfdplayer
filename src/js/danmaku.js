@@ -45,6 +45,9 @@ class Danmaku {
 
                 this.events && this.events.trigger('danmaku_load_end');
             });
+        } else {
+            this.events.trigger('danmaku_load_end');
+            this.options.callback();
         }
     }
 
@@ -87,7 +90,6 @@ class Danmaku {
     }
 
     send (dan, callback) {
-        alert(123);
         const danmakuData = {
             token: this.options.api.token,
             id: this.options.api.id,
