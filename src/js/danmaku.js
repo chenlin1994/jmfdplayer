@@ -24,26 +24,28 @@ class Danmaku {
 
     load () {
         let apiurl;
-        if (this.options.api.maximum) {
-            apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}&max=${this.options.api.maximum}`;
-        }
-        else {
-            apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}`;
-        }
-        const endpoints = (this.options.api.addition || []).slice(0);
-        endpoints.push(apiurl);
-        this.events && this.events.trigger('danmaku_load_start', endpoints);
+        if (this.options.api.address) {
+            if (this.options.api.maximum) {
+                apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}&max=${this.options.api.maximum}`;
+            }
+            else {
+                apiurl = `${this.options.api.address}v3/?id=${this.options.api.id}`;
+            }
+            const endpoints = (this.options.api.addition || []).slice(0);
+            endpoints.push(apiurl);
+            this.events && this.events.trigger('danmaku_load_start', endpoints);
 
-        this._readAllEndpoints(endpoints, (results) => {
-            this.dan = [].concat.apply([], results).sort((a, b) => a.time - b.time);
-            window.requestAnimationFrame(() => {
-                this.frame();
+            this._readAllEndpoints(endpoints, (results) => {
+                this.dan = [].concat.apply([], results).sort((a, b) => a.time - b.time);
+                window.requestAnimationFrame(() => {
+                    this.frame();
+                });
+
+                this.options.callback();
+
+                this.events && this.events.trigger('danmaku_load_end');
             });
-
-            this.options.callback();
-
-            this.events && this.events.trigger('danmaku_load_end');
-        });
+        }
     }
 
     reload (newAPI) {
@@ -85,6 +87,7 @@ class Danmaku {
     }
 
     send (dan, callback) {
+        alert(123);
         const danmakuData = {
             token: this.options.api.token,
             id: this.options.api.id,

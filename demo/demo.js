@@ -67,6 +67,7 @@ function initPlayers () {
         volume: 0.7,
         mutex: true,
         unlimited:true,
+        dblclick:true,
         buttons:{
             playButton:{// 播放 暂停
                 icon_pause:'',  // 暂停图标
@@ -90,7 +91,7 @@ function initPlayers () {
                 icon:''
             },
             setting:{    // 设置
-                icon:''
+
             },
             comment:{  // 评论
                 icon:'',
@@ -118,26 +119,15 @@ function initPlayers () {
         },
         video: {
             quality:[
-                {name:'超清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:0, type:'auto'},
-                {name:'高清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:1, type:'auto'},
-                {name:'标清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:2, type:'auto'}
+                {name:'超清', url:'http://txplay.qiuhui.com/live/100107.flv', number:0, type:'auto'},
+                {name:'高清', url:'http://txplay.qiuhui.com/live/100107_hd.flv', number:1, type:'auto'},
+                {name:'标清', url:'http://txplay.qiuhui.com/live/100107_ld.flv', number:2, type:'auto'}
             ],
             defaultQuality:0
         },
         danmaku: {
             bottom:'20px',
             top:'20px'
-        },
-        apiBackend: {
-            read: function (endpoint) {
-                // 设置加载完成
-                endpoint.success();
-                // callback()
-            },
-            send: function () {
-                // 如果需要手动发送旦暮，在这里
-                // callback()
-            }
         },
         contextmenu: [],
     });
@@ -157,6 +147,12 @@ function initPlayers () {
     window.dp1.on('error', (obj) => {
         console.log(obj);
     });
+    window.dp1.on('error', (obj) => {
+        console.log(obj);
+    });
+
+
+    return;
     // dp2
     window.dp2 = new DPlayer({
         container: document.getElementById('dplayer2'),
@@ -224,21 +220,9 @@ function initPlayers () {
             thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
             type: 'auto'
         },
-        subtitle: {
-            url: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.vtt',
-            type: 'webvtt',
-            fontSize: '25px',
-            bottom: '10%',
-            color: '#b7daff'
-        },
         danmaku: {
-            id: '9E2E3368B56CDBB4',
-            api: 'https://api.prprpr.me/dplayer/',
-            token: 'tokendemo',
-            maximum: 3000,
-            user: 'DIYgod',
-            bottom: '15%',
-            unlimited: true
+            top:'20px',
+            bottom:'20px'
         },
         contextmenu: [
             {

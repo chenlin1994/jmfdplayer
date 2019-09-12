@@ -44,17 +44,20 @@ class Controller {
 
         if (!utils.isMobile) {
             this.player.template.videoWrap.addEventListener('click', () => {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
+                if (this.player.options.dblclick) {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => {
+                        this.player.toggle();
+                    }, 200);
+                } else {
                     this.player.toggle();
-                }, 200);
-
+                }
             });
             this.player.template.controllerMask.addEventListener('click', () => {
                 this.player.toggle();
 
             });
-            this.player.template.videoWrap.addEventListener('dblclick', () => {
+            this.player.options.dblclick && this.player.template.videoWrap.addEventListener('dblclick', () => {
                 this.player.fullScreen.toggle('web');
                 clearTimeout(timer);
             });
