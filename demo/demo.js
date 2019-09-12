@@ -86,7 +86,6 @@ function initPlayers () {
                 callback: (obj) => {
                     console.log(obj);
                 }
-
             },
             settingCustomer:{  // 自定义设置
                 icon:''
@@ -120,9 +119,9 @@ function initPlayers () {
         },
         video: {
             quality:[
-                {name:'超清', url:'http://txplay.qiuhui.com/live/100129.flv', number:0, type:'auto'},
-                {name:'高清', url:'http://txplay.qiuhui.com/live/100129_hd.flv', number:1, type:'auto'},
-                {name:'标清', url:'http://txplay.qiuhui.com/live/100129_ld.flv', number:2, type:'auto'}
+                {name:'超清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:0, type:'auto'},
+                {name:'高清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:1, type:'auto'},
+                {name:'标清', url:'http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8', number:2, type:'auto'}
             ],
             defaultQuality:0
         },
@@ -152,7 +151,7 @@ function initPlayers () {
         });
     }, 0);
 
-    this.videoPlayer.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
+    window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
         console.log(message);
     });
 
