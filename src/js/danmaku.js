@@ -185,16 +185,21 @@ class Danmaku {
             const danSpeed = (width) => (danWidth + width) / 5;  // 弹幕滚动的速度
 
             const getTunnel = (ele, type, width) => {
-                console.log(this.danTunnel.right);
+                let pushIndex = 0;
                 // const tmp = danWidth / danSpeed(width);
-                for (let i = 0; this.unlimited || i < itemY; i++) {
+                // for (let i = 0; this.unlimited || i < itemY; i++) {
+                for (let i = 0; this.unlimited || i <= itemY; i++) {
                     const item = this.danTunnel[type][i + ''];
                     if (item && item.length) {
-                        if (i == itemY) {
-                            return 1;
-                        } else {
-                            continue;
+                        if (item.length < (this.danTunnel[type][pushIndex + ''] ? this.danTunnel[type][pushIndex + ''].length : 0)) {
+                            pushIndex = i;
                         }
+                        if (i == itemY) {
+                            this.danTunnel[type][pushIndex + ''].push(ele);
+                            return pushIndex;
+                        }
+                        console.log('pushIndex============');
+                        console.log(pushIndex);
 
                         /* if (this.index > itemY) {
                             this.index = 0;
@@ -228,7 +233,6 @@ class Danmaku {
                         return i % itemY;
                     }
                 }
-                // debugger;
                 // return -1;
             };
 

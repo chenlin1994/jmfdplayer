@@ -139,7 +139,7 @@ function initPlayers () {
             type:'right'
         });
 
-    }, 30);
+    }, 100);
 
     window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
         console.log('============sendComment=============');
