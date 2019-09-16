@@ -17,6 +17,7 @@ class Danmaku {
         this._opacity = this.options.opacity;
         this.events = this.options.events;
         this.unlimited = this.options.unlimited;
+        this.index = 0;
         this._measure('');
 
         this.load();
@@ -168,25 +169,37 @@ class Danmaku {
      */
     draw (dan) {
         if (this.showing) {
-            const itemHeight = this.options.height;
-            const danWidth = this.container.offsetWidth;
-            const danHeight = this.half ? this.container.offsetHeight / 2 : this.container.offsetHeight;
-            const itemY = parseInt(danHeight / itemHeight);
+            const itemHeight = this.options.height;  // 每条弹幕的高度
+            const danWidth = this.container.offsetWidth;  // 弹幕宽度
+            const danHeight = this.half ? this.container.offsetHeight / 2 : this.container.offsetHeight;  // 弹幕高度
+            const itemY = parseInt(danHeight / itemHeight);  // 每列可以显示的弹幕的条数
 
             const danItemRight = (ele) => {
                 const eleWidth = ele.offsetWidth || parseInt(ele.style.width);
                 const eleRight = ele.getBoundingClientRect().right || this.container.getBoundingClientRect().right + eleWidth;
+                console.log('>>>>>>>>>>>>========<<<<<<<<<<<<<<<');
+                console.log(ele.innerHTML);
                 return this.container.getBoundingClientRect().right - eleRight;
             };
 
-            const danSpeed = (width) => (danWidth + width) / 5;
+            const danSpeed = (width) => (danWidth + width) / 5;  // 弹幕滚动的速度
 
             const getTunnel = (ele, type, width) => {
-                const tmp = danWidth / danSpeed(width);
-
+                console.log(this.danTunnel.right);
+                // const tmp = danWidth / danSpeed(width);
                 for (let i = 0; this.unlimited || i < itemY; i++) {
                     const item = this.danTunnel[type][i + ''];
                     if (item && item.length) {
+                        if (i == itemY) {
+                            return 1;
+                        } else {
+                            continue;
+                        }
+
+                        /* if (this.index > itemY) {
+                            this.index = 0;
+                        }
+                        return this.index++;
                         if (type !== 'right') {
                             continue;
                         }
@@ -201,8 +214,11 @@ class Danmaku {
                                     this.danTunnel[type][i + ''].splice(0, 1);
                                 });
                                 return i % itemY;
+                            } else {
+                                return this.index;
                             }
                         }
+                    }*/
                     }
                     else {
                         this.danTunnel[type][i + ''] = [ele];
@@ -212,7 +228,8 @@ class Danmaku {
                         return i % itemY;
                     }
                 }
-                return -1;
+                // debugger;
+                // return -1;
             };
 
             if (Object.prototype.toString.call(dan) !== '[object Array]') {
@@ -246,9 +263,11 @@ class Danmaku {
                 switch (dan[i].type) {
                 case 'right':
                     tunnel = getTunnel(item, dan[i].type, itemWidth);
+                    // console.log('=================343==');
+                    // console.log(tunnel);
                     if (tunnel >= 0) {
-                        // item.style.width = itemWidth + 1 + 'px';
-                        item.style.top = itemHeight * tunnel + 'px';
+                    // item.style.width = itemWidth + 1 + 'px';
+                        item.style.top = Math.abs(itemHeight * tunnel) + 'px';
                         item.style.transform = `translate3d(-${danWidth}px,0,0)`;
                     }
                     break;
@@ -269,7 +288,7 @@ class Danmaku {
                 }
 
                 if (tunnel >= 0) {
-                    // move
+                // move
                     item.style['animation-duration'] = this.speedRecord + 's';
                     item.classList.add('dplayer-danmaku-move');
                     // insert

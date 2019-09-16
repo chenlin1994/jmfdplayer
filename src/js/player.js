@@ -186,7 +186,7 @@ class DPlayer {
         this.timer.enable('loading');
         this.container.classList.remove('dplayer-paused');
         this.container.classList.add('dplayer-playing');
-        if (this.danmaku) {
+        if (this.danmaku && !this.options.live) {
             this.danmaku.play();
         }
         if (this.options.mutex) {
@@ -216,9 +216,9 @@ class DPlayer {
         this.template.playButton && (this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
         this.video.pause();
         this.timer.disable('loading');
-        this.container.classList.remove('dplayer-playing');
-        this.container.classList.add('dplayer-paused');
-        if (this.danmaku) {
+        !this.options.live && this.container.classList.remove('dplayer-playing');
+        !this.options.live && this.container.classList.add('dplayer-paused');
+        if (this.danmaku && !this.options.live) {
             this.danmaku.pause();
         }
     }

@@ -1,3 +1,5 @@
+import { isNumber } from 'util';
+
 const isMobile = /mobile/i.test(window.navigator.userAgent);
 
 const utils = {
@@ -130,7 +132,7 @@ const utils = {
         return parseInt(color, 16) + 0x000000 & 0xffffff;
     },
 
-    number2Color: (number) => '#' + ('00000' + number.toString(16)).slice(-6),
+    number2Color: (number) => {if (isNumber(number)) { return '#' + ('00000' + number.toString(16)).slice(-6);} else {return number;}  },
 
     number2Type: (number) => {
         switch (number) {

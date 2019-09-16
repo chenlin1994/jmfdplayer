@@ -219,11 +219,7 @@
         <div class="dplayer-setting-customer">
             <button class="dplayer-icon dplayer-customer-setting" data-balloon="{{ tran('Setting') }}" data-balloon-pos="up">
                 <span class="dplayer-icon-content">
-                {{ if options.buttons.settingCustomer.icon }}
-                {{@ options.buttons.settingCustomer.icon }}
-                {{ else }}
-                <i class='iconfont icondanmu'></i>
-                {{ /if }}
+                {{@ options.buttons.settingCustomer.icon || icons.settingCustomer }}
                 </span>
             </button>
             <div class="customerBox_special customer-setting-box">

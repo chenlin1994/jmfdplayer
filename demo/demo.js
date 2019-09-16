@@ -85,7 +85,7 @@ function initPlayers () {
                 icon:''
             },
             setting:{    // 设置
-
+                icon:''
             },
             comment:{  // 评论
                 icon:'',
@@ -116,7 +116,7 @@ function initPlayers () {
         },
         video: {
             quality:[
-                {name:'超清', url:'http://txplay.qiuhui.com/live/1001071.flv', number:0, type:'auto'},
+                {name:'超清', url:'http://txplay.qiuhui.com/live/100107.flv', number:0, type:'auto'},
                 {name:'高清', url:'http://txplay.qiuhui.com/live/100107_hd.flv', number:1, type:'auto'},
                 {name:'标清', url:'http://txplay.qiuhui.com/live/100107_ld.flv', number:2, type:'auto'}
             ],
@@ -125,17 +125,21 @@ function initPlayers () {
         danmaku: {
             bottom:'20px',
             top:'20px'
+
         },
         // contextmenu: [],
     });
     let a = 1;
     setInterval(() => {
+        a++;
         window.dp1.danmaku.draw({
-            text:a++,
+            // text:'0000000000000000' + a,
+            text:a,
             color:'red',
             type:'right'
         });
-    }, 0);
+
+    }, 30);
 
     window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
         console.log('============sendComment=============');
