@@ -186,46 +186,22 @@ class Danmaku {
 
             const getTunnel = (ele, type, width) => {
                 let pushIndex = 0;
-                // const tmp = danWidth / danSpeed(width);
-                // for (let i = 0; this.unlimited || i < itemY; i++) {
-                for (let i = 0; this.unlimited || i <= itemY; i++) {
+                for (let i = 0; this.unlimited || i < itemY; i++) {
                     const item = this.danTunnel[type][i + ''];
                     if (item && item.length) {
                         if (item.length < (this.danTunnel[type][pushIndex + ''] ? this.danTunnel[type][pushIndex + ''].length : 0)) {
                             pushIndex = i;
                         }
-                        if (i == itemY) {
+                        if (i == itemY - 1) {
                             this.danTunnel[type][pushIndex + ''].push(ele);
+                            console.log('pushIndex============11111111111111');
+                            console.log(pushIndex);
                             return pushIndex;
                         }
-                        console.log('pushIndex============');
-                        console.log(pushIndex);
-
-                        /* if (this.index > itemY) {
-                            this.index = 0;
-                        }
-                        return this.index++;
-                        if (type !== 'right') {
-                            continue;
-                        }
-                        for (let j = 0; j < item.length; j++) {
-                            const danRight = danItemRight(item[j]) - 10;
-                            if (danRight <= danWidth - tmp * danSpeed(parseInt(item[j].style.width)) || danRight <= 0) {
-                                break;
-                            }
-                            if (j === item.length - 1) {
-                                this.danTunnel[type][i + ''].push(ele);
-                                ele.addEventListener('animationend', () => {
-                                    this.danTunnel[type][i + ''].splice(0, 1);
-                                });
-                                return i % itemY;
-                            } else {
-                                return this.index;
-                            }
-                        }
-                    }*/
                     }
                     else {
+                        console.log('pushIndex============');
+                        console.log(i);
                         this.danTunnel[type][i + ''] = [ele];
                         ele.addEventListener('animationend', () => {
                             this.danTunnel[type][i + ''].splice(0, 1);
@@ -233,7 +209,6 @@ class Danmaku {
                         return i % itemY;
                     }
                 }
-                // return -1;
             };
 
             if (Object.prototype.toString.call(dan) !== '[object Array]') {

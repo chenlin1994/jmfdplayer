@@ -129,17 +129,16 @@ function initPlayers () {
         },
         // contextmenu: [],
     });
-    let a = 1;
+    let a = 0;
     setInterval(() => {
         a++;
         window.dp1.danmaku.draw({
-            // text:'0000000000000000' + a,
-            text:a,
+            text:'0a0' + a,
             color:'red',
             type:'right'
         });
 
-    }, 100);
+    }, 50);
 
     window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
         console.log('============sendComment=============');
