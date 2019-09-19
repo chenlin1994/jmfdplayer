@@ -7,6 +7,8 @@ class Template {
         this.options = options.options;
         this.index = options.index;
         this.tran = options.tran;
+        this.isAndroid = options.isAndroid;
+        this.isMobile = options.isMobile;
         this.init();
     }
 
@@ -16,13 +18,15 @@ class Template {
             index: this.index,
             tran: this.tran,
             icons: Icons,
+            isMobile:this.isMobile,
             video: {
                 current: true,
                 pic: this.options.video.pic,
                 screenshot: this.options.screenshot,
                 preload: this.options.preload,
                 url: this.options.video.url,
-                subtitle: this.options.subtitle
+                subtitle: this.options.subtitle,
+                isAndroid:this.isAndroid
             }
         });
 
@@ -32,6 +36,7 @@ class Template {
         this.volumeButton = this.container.querySelector('.dplayer-volume');
         this.volumeButtonIcon = this.container.querySelector('.dplayer-volume-icon');
         this.volumeIcon = this.container.querySelector('.dplayer-volume-icon .dplayer-icon-content');
+        this.volumeMobile = this.container.querySelector('.dplayer-volume-mobile');
         this.playedBar = this.container.querySelector('.dplayer-played');
         this.loadedBar = this.container.querySelector('.dplayer-loaded');
         this.playedBarWrap = this.container.querySelector('.dplayer-bar-wrap');
@@ -49,7 +54,7 @@ class Template {
         this.customerSettingButton = this.container.querySelector('.dplayer-customer-setting');
         this.customerSettingBox = this.container.querySelector('.customer-setting-box');
         this.customerSettingArea = this.container.querySelector('.customer-setting-area');
-        this.customerSettingDanmaku = this.container.querySelector('.danmaku-font')
+        this.customerSettingDanmaku = this.container.querySelector('.danmaku-font');
         this.mask = this.container.querySelector('.dplayer-mask');
         this.loop = this.container.querySelector('.dplayer-setting-loop');
         this.loopToggle = this.container.querySelector('.dplayer-setting-loop .dplayer-toggle-setting-input');

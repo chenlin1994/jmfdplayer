@@ -34,7 +34,7 @@ class DPlayer {
      */
     constructor (options) {
         this.options = handleOption(options);
-
+        this.isAndroid = navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1;
         if (this.options.video.quality) {
             this.qualityIndex = this.options.video.defaultQuality;
             this.quality = this.options.video.quality[this.options.video.defaultQuality];
@@ -64,6 +64,8 @@ class DPlayer {
             options: this.options,
             index: index,
             tran: this.tran,
+            isAndroid:this.isAndroid,
+            isMobile:utils.isMobile
         });
 
         this.video = this.template.video;
@@ -216,8 +218,8 @@ class DPlayer {
         this.template.playButton && (this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
         this.video.pause();
         this.timer.disable('loading');
-        this.options.live && this.container.classList.remove('dplayer-playing');
-        this.options.live && this.container.classList.add('dplayer-paused');
+        !this.options.live && this.container.classList.remove('dplayer-playing');
+        !this.options.live && this.container.classList.add('dplayer-paused');
         if (this.danmaku && !this.options.live) {
             this.danmaku.pause();
         }
@@ -533,7 +535,8 @@ class DPlayer {
             screenshot:this.options.buttons.screenshot,
             preload:'auto',
             url:this.quality.url,
-            subtitle:this.options.subtitle
+            subtitle:this.options.subtitle,
+            isAndroid:this.isAndroid
         });
         const paused = this.video.paused;
         const videoEle = new DOMParser().parseFromString(videoHTML, 'text/html').body.firstChild;
@@ -575,13 +578,15 @@ class DPlayer {
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
         const paused = this.video.paused;
         this.video.pause();
+        alert(1);
         const videoHTML = tplVideo({
             current: false,
             pic: null,
             screenshot: this.options.buttons.screenshot,
             preload: 'auto',
             url: this.quality.url,
-            subtitle: this.options.subtitle
+            subtitle: this.options.subtitle,
+            isAndroid:this.isAndroid
         });
         const videoEle = new DOMParser().parseFromString(videoHTML, 'text/html').body.firstChild;
         this.template.videoWrap.insertBefore(videoEle, this.template.videoWrap.getElementsByTagName('div')[0]);

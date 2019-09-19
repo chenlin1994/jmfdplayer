@@ -71,6 +71,7 @@ class SettingCustomer {
         case '1': this.player.template.danmaku.style.fontSize = '22px';break;
         case '2': this.player.template.danmaku.style.fontSize = '28px';break;
         }
+        this.player.danmaku.updateFont();
     }
     move (dom1, dom2, dom3, dom4) {
         dom1.addEventListener('click', (e) => {

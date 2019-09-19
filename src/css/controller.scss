@@ -6,7 +6,11 @@
     bottom: 0;
     transition: all 0.3s ease;
 }
-
+.dplayer-mobile{
+    .dplayer-controller{
+        padding:0 10px
+    }
+}
 .dplayer-controller {
     position: absolute;
     bottom: 0;
@@ -31,6 +35,14 @@
         bottom: 33px;
         width: calc(100% - 40px);
         height: 3px;
+        &.dplayer-bar-wrap-mobile{
+            width: 100px;
+            bottom:0;
+            top:3px;
+            position: relative;
+            display: inline-block;
+            margin-left:20px
+        }
         &:hover {
             .dplayer-bar .dplayer-played .dplayer-thumb {
                 transform: scale(1);

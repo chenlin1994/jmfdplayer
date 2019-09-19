@@ -79,9 +79,14 @@
            <span class="dplayer-icon-content">{{@ options.buttons.playButton.icon_play || icons.play }}</span>
         </button>
         {{ /if }}
-        {{ if options.buttons.volumeButton }}
+        {{ if isMobile }}
+        <button class="dplayer-icon dplayer-volume-icon-mobile dplayer-volume-mobile">
+           <span class="dplayer-icon-content">{{@ options.buttons.playButton.icon_play || icons.volumeUp }}</span>
+        </button>
+        {{ /if }}
+        {{ if (options.buttons.volumeButton && !isMobile) }}
         <div class="dplayer-volume">
-            <button class="dplayer-icon dplayer-volume-icon">
+            <button class="dplayer-icon">
                 <span class="dplayer-icon-content">
                    {{@ (options.buttons.volumeButton && options.buttons.volumeButton.volumeUp) ||  icons.volumeUp }}
                 </span>
@@ -95,11 +100,24 @@
             </div>
         </div>
         {{ /if }}
+       
         {{ if options.buttons.timePanel }}
         <span class="dplayer-time">
             <span class="dplayer-ptime">0:00</span> /
             <span class="dplayer-dtime">0:00</span>
         </span>
+        {{ /if }}
+        {{ if isMobile}}
+        <div class="dplayer-bar-wrap dplayer-bar-wrap-mobile">
+            <div class="dplayer-bar-time hidden">00:00</div>
+            <div class="dplayer-bar-preview"></div>
+            <div class="dplayer-bar">
+                <div class="dplayer-loaded" style="width: 0;"></div>
+                <div class="dplayer-played" style="width: 0; background: {{ options.theme }}">
+                    <span class="dplayer-thumb" style="background: {{ options.theme }}"></span>
+                </div>
+            </div>
+        </div>
         {{ /if }}
         {{ if options.live }}
         <span class="dplayer-live-badge"><span class="dplayer-live-dot" style="background: {{ options.theme }};"></span>{{ tran('Live') }}</span>
@@ -297,6 +315,7 @@
         </div>
         {{ /if }}
     </div>
+    {{ if !isMobile}}
     <div class="dplayer-bar-wrap">
         <div class="dplayer-bar-time hidden">00:00</div>
         <div class="dplayer-bar-preview"></div>
@@ -307,6 +326,7 @@
             </div>
         </div>
     </div>
+    {{ /if }}
 </div>
 <div class="dplayer-info-panel dplayer-info-panel-hide">
     <div class="dplayer-info-panel-close">[x]</div>

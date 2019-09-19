@@ -6,6 +6,7 @@ class Controller {
     constructor (player) {
         this.player = player;
         this.autoHideTimer = 0;
+        this.volume = true;
         if (!utils.isMobile) {
             this.player.container.addEventListener('mousemove', () => {
                 this.setAutoHide();
@@ -31,6 +32,8 @@ class Controller {
         this.initHighlights();
         if (!utils.isMobile) {
             this.player.options.buttons.volumeButton && this.initVolumeButton();
+        } else {
+            this.initVolumeMobile();
         }
     }
 
@@ -62,12 +65,13 @@ class Controller {
             });
         }
         else {
-            this.player.template.videoWrap.addEventListener('click', () => {
-                this.toggle();
-            });
-            this.player.template.controllerMask.addEventListener('click', () => {
-                this.toggle();
-            });
+            // this.player.template.videoWrap.addEventListener('click', () => {
+
+            //     this.player.toggle();
+            // });
+            // this.player.template.controllerMask.addEventListener('click', () => {
+            //     this.player.toggle();
+            // });
         }
     }
 
@@ -188,7 +192,19 @@ class Controller {
             this.player.options.buttons.webFullScreen.callback && this.player.options.buttons.webFullScreen.callback(this);
         });
     }
-
+    initVolumeMobile () {
+        this.player.template.volumeMobile.addEventListener('click', () => {
+            if (this.volume) {
+                this.player.video.muted = true;
+                this.player.template.volumeMobile.innerHTML = Icons.volumeOff;
+                this.volume = !this.volume;
+            } else {
+                this.player.video.muted = false;
+                this.player.template.volumeMobile.innerHTML = Icons.volumeUp;
+                this.volume = !this.volume;
+            }
+        });
+    }
     initVolumeButton () {
         const vWidth = 35;
 

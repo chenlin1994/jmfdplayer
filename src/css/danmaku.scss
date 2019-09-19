@@ -18,6 +18,9 @@
             position: absolute;
             visibility: hidden;
         }
+        &.dplayer-danmaku-item-self{
+            border:1px solid red;
+        }
     }
     .dplayer-danmaku-right {
         position: absolute;

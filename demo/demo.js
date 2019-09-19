@@ -49,7 +49,7 @@ function initPlayers () {
     window.dp1 = new DPlayer({
         container: document.getElementById('dplayer1'),
         autoplay: true,
-        live: true,
+        live: false,
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
@@ -64,63 +64,67 @@ function initPlayers () {
             playButton:{// 播放 暂停
                 icon_pause:'',  // 暂停图标
                 icon_play:'',   // 播放图标
-                callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
-                    console.log('========play=========');
-                    console.log(obj);
-                }
+                // callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
+                //     console.log('========play=========');
+                //     console.log(obj);
+                // }
             },
-            volumeButton:{  // 声音
-                volumeUp:'',
-                volumeDown:'',
-                volumeOff:''
-            },
+            // volumeButton:{  // 声音
+            //     volumeUp:'',
+            //     volumeDown:'',
+            //     volumeOff:''
+            // },
             fullScreen:{  // 全屏
                 icon:'',
-                callback: (obj) => {
-                    console.log('========fullScreen=============');
-                    console.log(obj);
-                }
+                // callback: (obj) => {
+                //     console.log('========fullScreen=============');
+                //     console.log(obj);
+                // }
             },
-            settingCustomer:{  // 自定义设置
-                icon:''
-            },
-            setting:{    // 设置
-                icon:''
-            },
-            comment:{  // 评论
-                icon:'',
-                icon_pallette:'',
-                icon_send:''
-            },
-            screenshot:{  // 截图
-                icon:'',
-                callback: (obj) => {
-                    console.log('========screenshot=============');
-                    console.log(obj);
-                }
-            },
-            subtitle:{  // 字幕
-                icon:'',
-                callback: (obj) => {
-                    console.log('========subtitle=============');
-                    console.log(obj);
-                }
-            },
-            webFullScreen:{  // 网页全屏
-                icon:'',
-                callback:(obj) => {
-                    console.log('========webFullScreen=============');
-                    console.log(obj);
-                }
+            // settingCustomer:{  // 自定义设置
+            //     icon:''
+            // },
+            // setting:{    // 设置
+            //     icon:''
+            // },
+            // comment:{  // 评论
+            //     icon:'',
+            //     icon_pallette:'',
+            //     icon_send:''
+            // },
+            // screenshot:{  // 截图
+            //     icon:'',
+            //     // callback: (obj) => {
+            //     //     console.log('========screenshot=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
+            // subtitle:{  // 字幕
+            //     icon:'',
+            //     // callback: (obj) => {
+            //     //     console.log('========subtitle=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
+            // webFullScreen:{  // 网页全屏
+            //     icon:'',
+            //     // callback:(obj) => {
+            //     //     console.log('========webFullScreen=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
+            timePanel:{
+
             }
         },
         video: {
-            quality:[
-                {name:'超清', url:'http://txplay.qiuhui.com/live/100107.flv', number:0, type:'auto'},
-                {name:'高清', url:'http://txplay.qiuhui.com/live/100107_hd.flv', number:1, type:'auto'},
-                {name:'标清', url:'http://txplay.qiuhui.com/live/100107_ld.flv', number:2, type:'auto'}
-            ],
-            defaultQuality:0
+            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
+            // quality:[
+            //     {name:'超清', url:'http://tc.xiaomingsport.com/live/100010.m3u8', number:0, type:'auto'},
+            //     {name:'高清', url:'http://tc.xiaomingsport.com/live/100010_hd.flv', number:1, type:'auto'},
+            //     {name:'标清', url:'http://tc.xiaomingsport.com/live/100010_ld.flv', number:2, type:'auto'}
+            // ],
+            // defaultQuality:0
         },
         danmaku: {
             bottom:'20px',
@@ -129,176 +133,166 @@ function initPlayers () {
         },
         // contextmenu: [],
     });
-    let a = 0;
-    setInterval(() => {
-        a++;
-        window.dp1.danmaku.draw({
-            text:'0a0' + a,
-            color:'red',
-            type:'right'
-        });
-
-    }, 50);
-
-    window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
-        console.log('============sendComment=============');
-        console.log(message);
-    });
-
-    window.dp1.on('error', (obj) => {
-        console.log('=========error===========');
-        console.log(obj);
-    });
-    window.dp1.on('sourthError', (obj) => {
-        console.log('=======sourthError=======');
-        console.log(obj);
-    });
-    window.dp1.on('reload', (quality) => {
-        console.log('===========reload=================');
-        console.log(quality);
-    });
-    window.dp1.on('sendComment', (quality) => {
-        console.log('===========sendComment============');
-        console.log(quality);
-    });
-
-
-    return;
-    // dp2
-    window.dp2 = new DPlayer({
-        container: document.getElementById('dplayer2'),
-        preload: 'none',
-        autoplay: false,
-        theme: '#FADFA3',
-        loop: true,
-        screenshot: true,
-        hotkey: true,
-        logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
-        volume: 0.2,
-        mutex: true,
-        buttons:{
-            playButton:{// 播放 暂停
-                icon_pause:'',  // 暂停图标
-                icon_play:'',   // 播放图标
-                callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
-                    console.log(obj);
-                }
-            },
-            volumeButton:{  // 声音
-                volumeUp:'',
-                volumeDown:'',
-                volumeOff:''
-            },
-            fullScreen:{  // 全屏
-                icon:'',
-                callback: (obj) => {
-                    console.log(obj);
-                }
-            },
-            settingCustomer:{  // 自定义设置
-                icon:''
-            },
-            setting:{    // 设置
-                icon:''
-            },
-            comment:{  // 评论
-                icon:'',
-                icon_pallette:'',
-                icon_send:''
-            },
-            screenshot:{  // 截图
-                icon:'',
-                callback: (obj) => {
-                    console.log(obj);
-                }
-            },
-            subtitle:{  // 字幕
-                icon:'',
-                callback: (obj) => {
-                    console.log(obj);
-                }
-            },
-            webFullScreen:{  // 网页全屏
-                icon:'',
-                callback:(obj) => {
-                    console.log(obj);
-                }
-            }
-        },
-        video: {
-            url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
-            type: 'auto'
-        },
-        danmaku: {
-            top:'20px',
-            bottom:'20px'
-        },
-        contextmenu: [
-            {
-                text: 'custom contextmenu',
-                link: 'https://github.com/MoePlayer/DPlayer'
-            }
-        ]
-    });
-
-    const events = [
-        'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
-        'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
-        'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
-        'volumechange', 'waiting',
-        'screenshot',
-        'thumbnails_show', 'thumbnails_hide',
-        'danmaku_show', 'danmaku_hide', 'danmaku_clear',
-        'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
-        'contextmenu_show', 'contextmenu_hide',
-        'notice_show', 'notice_hide',
-        'quality_start', 'quality_end',
-        'destroy',
-        'resize',
-        'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
-        'subtitle_show', 'subtitle_hide', 'subtitle_change'
-    ];
-    const eventsEle = document.getElementById('events');
-    for (let i = 0; i < events.length; i++) {
-        dp2.on(events[i], (info) => {
-            eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
-            eventsEle.scrollTop = eventsEle.scrollHeight;
-        });
-    }
 }
+window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
+    console.log('============sendComment=============');
+    console.log(message);
+});
 
-function clearPlayers () {
-    for (let i = 0; i < 6; i++) {
-        window['dp' + (i + 1)].pause();
-        document.getElementById('dplayer' + (i + 1)).innerHTML = '';
-    }
-}
+window.dp1.on('error', (obj) => {
+    console.log('=========error===========');
+    console.log(obj);
+});
+window.dp1.on('sourthError', (obj) => {
+    console.log('=======sourthError=======');
+    console.log(obj);
+});
+window.dp1.on('reload', (quality) => {
+    console.log('===========reload=================');
+    console.log(quality);
+});
+window.dp1.on('sendComment', (quality) => {
+    console.log('===========sendComment============');
+    console.log(quality);
+});
 
-function switchDPlayer () {
-    if (dp2.option.danmaku.id !== '5rGf5Y2X55qu6Z2p') {
-        dp2.switchVideo({
-            url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
-            pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
-            type: 'auto',
-        }, {
-            id: '5rGf5Y2X55qu6Z2p',
-            api: 'https://api.prprpr.me/dplayer/',
-            maximum: 3000,
-            user: 'DIYgod'
-        });
-    } else {
-        dp2.switchVideo({
-            url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
-            thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
-            type: 'auto'
-        }, {
-            id: '9E2E3368B56CDBB42',
-            api: 'https://api.prprpr.me/dplayer/',
-            maximum: 3000,
-            user: 'DIYgod'
-        });
-    }
-}
+
+// return;
+// dp2
+//     window.dp2 = new DPlayer({
+//         container: document.getElementById('dplayer2'),
+//         preload: 'none',
+//         autoplay: false,
+//         theme: '#FADFA3',
+//         loop: true,
+//         screenshot: true,
+//         hotkey: true,
+//         logo: 'https://i.loli.net/2019/06/06/5cf8c5d94521136430.png',
+//         volume: 0.2,
+//         mutex: true,
+//         buttons:{
+//             playButton:{// 播放 暂停
+//                 icon_pause:'',  // 暂停图标
+//                 icon_play:'',   // 播放图标
+//                 callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
+//                     console.log(obj);
+//                 }
+//             },
+//             volumeButton:{  // 声音
+//                 volumeUp:'',
+//                 volumeDown:'',
+//                 volumeOff:''
+//             },
+//             fullScreen:{  // 全屏
+//                 icon:'',
+//                 callback: (obj) => {
+//                     console.log(obj);
+//                 }
+//             },
+//             settingCustomer:{  // 自定义设置
+//                 icon:''
+//             },
+//             setting:{    // 设置
+//                 icon:''
+//             },
+//             comment:{  // 评论
+//                 icon:'',
+//                 icon_pallette:'',
+//                 icon_send:''
+//             },
+//             screenshot:{  // 截图
+//                 icon:'',
+//                 callback: (obj) => {
+//                     console.log(obj);
+//                 }
+//             },
+//             subtitle:{  // 字幕
+//                 icon:'',
+//                 callback: (obj) => {
+//                     console.log(obj);
+//                 }
+//             },
+//             webFullScreen:{  // 网页全屏
+//                 icon:'',
+//                 callback:(obj) => {
+//                     console.log(obj);
+//                 }
+//             }
+//         },
+//         video: {
+//             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+//             pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+//             thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
+//             type: 'auto'
+//         },
+//         danmaku: {
+//             top:'20px',
+//             bottom:'20px'
+//         },
+//         contextmenu: [
+//             {
+//                 text: 'custom contextmenu',
+//                 link: 'https://github.com/MoePlayer/DPlayer'
+//             }
+//         ]
+//     });
+
+//     const events = [
+//         'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
+//         'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
+//         'playing', 'ratechange', 'seeked', 'seeking', 'stalled',
+//         'volumechange', 'waiting',
+//         'screenshot',
+//         'thumbnails_show', 'thumbnails_hide',
+//         'danmaku_show', 'danmaku_hide', 'danmaku_clear',
+//         'danmaku_loaded', 'danmaku_send', 'danmaku_opacity',
+//         'contextmenu_show', 'contextmenu_hide',
+//         'notice_show', 'notice_hide',
+//         'quality_start', 'quality_end',
+//         'destroy',
+//         'resize',
+//         'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
+//         'subtitle_show', 'subtitle_hide', 'subtitle_change'
+//     ];
+//     const eventsEle = document.getElementById('events');
+//     for (let i = 0; i < events.length; i++) {
+//         dp2.on(events[i], (info) => {
+//             eventsEle.innerHTML += '<p>Event: ' + events[i] + '</p>';
+//             eventsEle.scrollTop = eventsEle.scrollHeight;
+//         });
+//     }
+// }
+
+// function clearPlayers () {
+//     for (let i = 0; i < 6; i++) {
+//         window['dp' + (i + 1)].pause();
+//         document.getElementById('dplayer' + (i + 1)).innerHTML = '';
+//     }
+// }
+
+// function switchDPlayer () {
+//     if (dp2.option.danmaku.id !== '5rGf5Y2X55qu6Z2p') {
+//         dp2.switchVideo({
+//             url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+//             pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
+//             type: 'auto',
+//         }, {
+//             id: '5rGf5Y2X55qu6Z2p',
+//             api: 'https://api.prprpr.me/dplayer/',
+//             maximum: 3000,
+//             user: 'DIYgod'
+//         });
+//     } else {
+//         dp2.switchVideo({
+//             url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+//             pic: 'https://i.loli.net/2019/06/06/5cf8c5d9c57b510947.png',
+//             thumbnails: 'https://i.loli.net/2019/06/06/5cf8c5d9cec8510758.jpg',
+//             type: 'auto'
+//         }, {
+//             id: '9E2E3368B56CDBB42',
+//             api: 'https://api.prprpr.me/dplayer/',
+//             maximum: 3000,
+//             user: 'DIYgod'
+//         });
+//     }
+// }
