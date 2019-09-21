@@ -86,7 +86,7 @@ class DPlayer {
                 callback: () => {
                     setTimeout(() => {
                         this.template.danmakuLoading.style.display = 'none';
-
+                        console.log(this);
                         // autoplay
                         if (this.options.autoplay) {
                             this.play();
@@ -534,7 +534,7 @@ class DPlayer {
             pic:null,
             screenshot:this.options.buttons.screenshot,
             preload:'auto',
-            url:this.quality.url,
+            url:this.quality ? this.quality.url : this.options.video.url,
             subtitle:this.options.subtitle,
             isAndroid:this.isAndroid
         });
@@ -543,9 +543,8 @@ class DPlayer {
         this.template.videoWrap.insertBefore(videoEle, this.template.videoWrap.getElementsByTagName('div')[0]);
         this.prevVideo = this.video;
         this.video = videoEle;
-        this.initVideo(this.video, this.quality.type || this.options.video.type);
+        this.quality ? this.initVideo(this.video, this.quality.type || this.options.video.type) : this.initVideo(this.video, this.options.video.type);
         if (!this.options.live) {this.seek(this.prevVideo.currentTime);}
-        this.notice(`${this.tran('Switching to')} ${this.quality.name} ${this.tran('quality')}`, -1);
         this.events.trigger('quality_start', this.quality);
         this.events.trigger('reload', this.quality);
         this.on('canplay', () => {
@@ -578,7 +577,6 @@ class DPlayer {
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
         const paused = this.video.paused;
         this.video.pause();
-        alert(1);
         const videoHTML = tplVideo({
             current: false,
             pic: null,

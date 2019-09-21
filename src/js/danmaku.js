@@ -19,7 +19,6 @@ class Danmaku {
         this.unlimited = this.options.unlimited;
         this.index = 0;
         this._measure('');
-
         this.load();
     }
 
@@ -41,9 +40,7 @@ class Danmaku {
                 window.requestAnimationFrame(() => {
                     this.frame();
                 });
-
                 this.options.callback();
-
                 this.events && this.events.trigger('danmaku_load_end');
             });
         } else {
@@ -181,7 +178,7 @@ class Danmaku {
                         if (item.length < (this.danTunnel[type][pushIndex + ''] ? this.danTunnel[type][pushIndex + ''].length : 0)) {
                             pushIndex = i;
                         }
-                        if (i == itemY - 1) {
+                        if (i === itemY - 1) {
                             this.danTunnel[type][pushIndex + ''].push(ele);
                             return pushIndex;
                         }

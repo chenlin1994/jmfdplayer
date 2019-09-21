@@ -9,6 +9,7 @@
     },
     "rules": {
         "no-console": 0,
+        "linebreak-style":[0,"error","windows"],
         "no-extra-parens": 1,
         "block-scoped-var": 1,
         "curly": 1,
@@ -22,7 +23,6 @@
         "func-call-spacing": 1,
         "indent": 1,
         "keyword-spacing": 1,
-        "linebreak-style": 1,
         "lines-around-comment": 1,
         "no-multiple-empty-lines": 1,
         "space-infix-ops": 1,

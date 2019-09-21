@@ -86,7 +86,7 @@
         {{ /if }}
         {{ if (options.buttons.volumeButton && !isMobile) }}
         <div class="dplayer-volume">
-            <button class="dplayer-icon">
+            <button class="dplayer-icon dplayer-volume-icon">
                 <span class="dplayer-icon-content">
                    {{@ (options.buttons.volumeButton && options.buttons.volumeButton.volumeUp) ||  icons.volumeUp }}
                 </span>

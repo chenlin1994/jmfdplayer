@@ -1,7 +1,8 @@
 import { isNumber } from 'util';
-
+const u = navigator.userAgent;
 const isMobile = /mobile/i.test(window.navigator.userAgent);
-
+const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+const isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 const utils = {
 
     /**
@@ -89,6 +90,10 @@ const utils = {
     },
 
     isMobile: isMobile,
+
+    isAndroid:isAndroid,
+
+    isIos:isIos,
 
     isFirefox: /firefox/i.test(window.navigator.userAgent),
 
