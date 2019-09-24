@@ -43,7 +43,6 @@ class DPlayer {
         this.events = new Events();
         this.user = new User(this);
         this.container = this.options.container;
-
         this.container.classList.add('dplayer');
         if (!this.options.danmaku) {
             this.container.classList.add('dplayer-no-danmaku');
@@ -459,6 +458,50 @@ class DPlayer {
                     this.notice('Error: Can\'t find Webtorrent.');
                 }
                 break;
+            default:
+                if (flvjs) {
+                    if (flvjs.isSupported()) {
+                        const flvPlayer = flvjs.createPlayer({
+                            type: 'flv',
+                            url: video.src
+                        });
+                        flvPlayer.attachMediaElement(video);
+                        flvPlayer.load();
+                        console.log('11111111111111');
+                        console.log(flvPlayer._msectl._mediaSource);
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceopen', function () {
+                            console.log('opening');
+                        });
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceended', function () {
+                            console.log('ending');
+                        });
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceclose', function () {
+                            console.log('ending');
+                        });
+                        flvPlayer.on('error', (e) => {
+                            this.events.trigger('error', e);
+                            console.log(flvPlayer._mediaSource);
+                            this.events.trigger('sourthError', e);
+                        });
+                        flvPlayer.on('source_open', (e) => {
+                            console.log(11111111111111111111111);
+                            console.log(e);
+                        });
+                        window.flvObject = flvPlayer;
+                        this.events.on('destroy', () => {
+                            flvPlayer.unload();
+                            flvPlayer.detachMediaElement();
+                            flvPlayer.destroy();
+                        });
+                    }
+                    else {
+                        this.notice('Error: flvjs is not supported.');
+                    }
+                }
+                else {
+                    this.notice('Error: Can\'t find flvjs.');
+                }
+                break;
             }
         }
     }
@@ -496,15 +539,17 @@ class DPlayer {
         // video end
         this.on('ended', () => {
             this.bar.set('played', 1, 'width');
-            if (!this.setting.loop) {
-                this.pause();
-            }
-            else {
-                this.seek(0);
-                this.play();
-            }
-            if (this.danmaku) {
-                this.danmaku.danIndex = 0;
+            if (this.options.loop) {
+                if (!this.setting.loop) {
+                    this.pause();
+                }
+                else {
+                    this.seek(0);
+                    this.play();
+                }
+                if (this.danmaku) {
+                    this.danmaku.danIndex = 0;
+                }
             }
         });
 
@@ -564,6 +609,7 @@ class DPlayer {
         this.events.trigger('quality_start', this.quality);
         this.events.trigger('reload', this.quality);
         this.on('canplay', () => {
+            this.video.play();
             if (this.prevVideo) {
                 if (this.video.currentTime !== this.prevVideo.currentTime) {
                     this.options.live && this.seek(this.prevVideo.currentTime);
