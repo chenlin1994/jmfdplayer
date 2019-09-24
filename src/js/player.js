@@ -382,9 +382,25 @@ class DPlayer {
                         });
                         flvPlayer.attachMediaElement(video);
                         flvPlayer.load();
+                        console.log('11111111111111');
+                        console.log(flvPlayer._msectl._mediaSource);
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceopen', function () {
+                            console.log('opening');
+                        });
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceended', function () {
+                            console.log('ending');
+                        });
+                        flvPlayer._msectl._mediaSource.addEventListener('sourceclose', function () {
+                            console.log('ending');
+                        });
                         flvPlayer.on('error', (e) => {
                             this.events.trigger('error', e);
+                            console.log(flvPlayer._mediaSource);
                             this.events.trigger('sourthError', e);
+                        });
+                        flvPlayer.on('source_open', (e) => {
+                            console.log(11111111111111111111111);
+                            console.log(e);
                         });
                         window.flvObject = flvPlayer;
                         this.events.on('destroy', () => {

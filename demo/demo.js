@@ -49,7 +49,7 @@ function initPlayers () {
     window.dp1 = new DPlayer({
         container: document.getElementById('dplayer1'),
         autoplay: true,
-        live: false,
+        live: true,
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
@@ -69,11 +69,11 @@ function initPlayers () {
                 //     console.log(obj);
                 // }
             },
-            // volumeButton:{  // 声音
-            //     volumeUp:'',
-            //     volumeDown:'',
-            //     volumeOff:''
-            // },
+            volumeButton:{  // 声音
+                volumeUp:'',
+                volumeDown:'',
+                volumeOff:''
+            },
             fullScreen:{  // 全屏
                 icon:'',
                 // callback: (obj) => {
@@ -81,50 +81,51 @@ function initPlayers () {
                 //     console.log(obj);
                 // }
             },
-            // settingCustomer:{  // 自定义设置
-            //     icon:''
-            // },
-            // setting:{    // 设置
-            //     icon:''
-            // },
-            // comment:{  // 评论
-            //     icon:'',
-            //     icon_pallette:'',
-            //     icon_send:''
-            // },
-            // screenshot:{  // 截图
-            //     icon:'',
-            //     // callback: (obj) => {
-            //     //     console.log('========screenshot=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
-            // subtitle:{  // 字幕
-            //     icon:'',
-            //     // callback: (obj) => {
-            //     //     console.log('========subtitle=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
-            // webFullScreen:{  // 网页全屏
-            //     icon:'',
-            //     // callback:(obj) => {
-            //     //     console.log('========webFullScreen=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
+            settingCustomer:{  // 自定义设置
+                icon:''
+            },
+            setting:{    // 设置
+                icon:''
+            },
+            comment:{  // 评论
+                icon:'',
+                icon_pallette:'',
+                icon_send:''
+            },
+            screenshot:{  // 截图
+                icon:'',
+                // callback: (obj) => {
+                //     console.log('========screenshot=============');
+                //     console.log(obj);
+                // }
+            },
+            subtitle:{  // 字幕
+                icon:'',
+                // callback: (obj) => {
+                //     console.log('========subtitle=============');
+                //     console.log(obj);
+                // }
+            },
+            webFullScreen:{  // 网页全屏
+                icon:'',
+                // callback:(obj) => {
+                //     console.log('========webFullScreen=============');
+                //     console.log(obj);
+                // }
+            },
             timePanel:{
 
             }
         },
         video: {
-            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
-            // quality:[
-            //     {name:'超清', url:'http://tc.xiaomingsport.com/live/100010.m3u8', number:0, type:'auto'},
-            //     {name:'高清', url:'http://tc.xiaomingsport.com/live/100010_hd.flv', number:1, type:'auto'},
-            //     {name:'标清', url:'http://tc.xiaomingsport.com/live/100010_ld.flv', number:2, type:'auto'}
-            // ],
-            // defaultQuality:0
+            // url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
+            quality:[
+                {name:'超清', url:'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=2&room_id=100120', number:0, type:'auto'},
+                // {name:'超清', url:'http://txplay.qiuhui.com/live/100120_hd.flv', number:0, type:'auto'},
+                {name:'高清', url:'http://tc.xiaomingsport.com/live/100010_hd.flv', number:1, type:'auto'},
+                {name:'标清', url:'http://tc.xiaomingsport.com/live/100010_ld.flv', number:2, type:'auto'}
+            ],
+            defaultQuality:0
         },
         danmaku: {
             bottom:'20px',
