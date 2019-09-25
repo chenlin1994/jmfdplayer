@@ -40,7 +40,7 @@ export default (options) => {
     }
 
     if (options.video.quality) {
-        options.video.url = options.video.quality[options.video.defaultQuality || 0].url;
+        options.video.url = options.video.quality[options.video.defaultQuality || 0].url + '&line=' + options.video.defaultLine;
     }
 
     if (options.lang) {

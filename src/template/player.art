@@ -124,6 +124,22 @@
         {{ /if }}
     </div>
     <div class="dplayer-icons dplayer-icons-right">
+        {{ if options.video.line }}
+        <div class="dplayer-line">
+            <button class="dplayer-icon dplayer-line-icon">{{ options.video.line[options.video.defaultLine].line_name }}</button>
+            <div class="dplayer-line-mask">
+                <div class="dplayer-line-list">
+                {{ each options.video.line }}
+                    {{ if (options.video.defaultLine == $index) }}
+                    <div class="dplayer-line-item  active " data-index="{{  $value.line_id }}" >{{ $value.line_name }}</div>
+                    {{ else }}
+                    <div class="dplayer-line-item   " data-index="{{ $value.line_id }}">{{ $value.line_name }}</div>
+                    {{ /if }}
+                {{ /each }}
+                </div>
+            </div>
+        </div>
+        {{ /if }}
         {{ if options.video.quality }}
         <div class="dplayer-quality">
             <button class="dplayer-icon dplayer-quality-icon">{{ options.video.quality[options.video.defaultQuality].name }}</button>

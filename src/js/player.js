@@ -39,6 +39,9 @@ class DPlayer {
             this.qualityIndex = this.options.video.defaultQuality;
             this.quality = this.options.video.quality[this.options.video.defaultQuality];
         }
+        if (this.options.video.line) {
+            this.line_id = this.options.video.defaultLine;
+        }
         this.tran = new i18n(this.options.lang).tran;
         this.events = new Events();
         this.user = new User(this);
@@ -76,7 +79,6 @@ class DPlayer {
         this.fullScreen = new FullScreen(this);
 
         this.controller = new Controller(this);
-
         if (this.options.danmaku) {
             this.danmaku = new Danmaku({
                 container: this.template.danmaku,
@@ -217,6 +219,7 @@ class DPlayer {
         this.template.playButton && (this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
         this.video.pause();
         this.timer.disable('loading');
+        // 弹幕不暂停
         !this.options.live && this.container.classList.remove('dplayer-playing');
         !this.options.live && this.container.classList.add('dplayer-paused');
         if (this.danmaku && !this.options.live) {
@@ -381,25 +384,11 @@ class DPlayer {
                         });
                         flvPlayer.attachMediaElement(video);
                         flvPlayer.load();
-                        console.log('11111111111111');
-                        console.log(flvPlayer._msectl._mediaSource);
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceopen', function () {
-                            console.log('opening');
-                        });
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceended', function () {
-                            console.log('ending');
-                        });
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceclose', function () {
-                            console.log('ending');
-                        });
                         flvPlayer.on('error', (e) => {
                             this.events.trigger('error', e);
-                            console.log(flvPlayer._mediaSource);
                             this.events.trigger('sourthError', e);
                         });
-                        flvPlayer.on('source_open', (e) => {
-                            console.log(11111111111111111111111);
-                            console.log(e);
+                        flvPlayer.on('source_open', () => {
                         });
                         window.flvObject = flvPlayer;
                         this.events.on('destroy', () => {
@@ -456,50 +445,6 @@ class DPlayer {
                 }
                 else {
                     this.notice('Error: Can\'t find Webtorrent.');
-                }
-                break;
-            default:
-                if (flvjs) {
-                    if (flvjs.isSupported()) {
-                        const flvPlayer = flvjs.createPlayer({
-                            type: 'flv',
-                            url: video.src
-                        });
-                        flvPlayer.attachMediaElement(video);
-                        flvPlayer.load();
-                        console.log('11111111111111');
-                        console.log(flvPlayer._msectl._mediaSource);
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceopen', function () {
-                            console.log('opening');
-                        });
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceended', function () {
-                            console.log('ending');
-                        });
-                        flvPlayer._msectl._mediaSource.addEventListener('sourceclose', function () {
-                            console.log('ending');
-                        });
-                        flvPlayer.on('error', (e) => {
-                            this.events.trigger('error', e);
-                            console.log(flvPlayer._mediaSource);
-                            this.events.trigger('sourthError', e);
-                        });
-                        flvPlayer.on('source_open', (e) => {
-                            console.log(11111111111111111111111);
-                            console.log(e);
-                        });
-                        window.flvObject = flvPlayer;
-                        this.events.on('destroy', () => {
-                            flvPlayer.unload();
-                            flvPlayer.detachMediaElement();
-                            flvPlayer.destroy();
-                        });
-                    }
-                    else {
-                        this.notice('Error: flvjs is not supported.');
-                    }
-                }
-                else {
-                    this.notice('Error: Can\'t find flvjs.');
                 }
                 break;
             }
@@ -605,23 +550,72 @@ class DPlayer {
         this.prevVideo = this.video;
         this.video = videoEle;
         this.quality ? this.initVideo(this.video, this.quality.type || this.options.video.type) : this.initVideo(this.video, this.options.video.type);
-        if (!this.options.live) {this.seek(this.prevVideo.currentTime);}
         this.events.trigger('quality_start', this.quality);
         this.events.trigger('reload', this.quality);
-        this.on('canplay', () => {
-            this.video.play();
-            if (this.prevVideo) {
-                if (this.video.currentTime !== this.prevVideo.currentTime) {
-                    this.options.live && this.seek(this.prevVideo.currentTime);
-                    return;
-                }
-                this.template.videoWrap.removeChild(this.prevVideo);
-                this.video.classList.add('dplayer-video-current');
-                if (!paused) {
-                    this.video.play();
-                }
-                this.prevVideo = null;
+        let currentTime = '';
+        if (this.prevVideo) {
+            currentTime = this.prevVideo.currentTime;
+            this.template.videoWrap.removeChild(this.prevVideo);
+            this.prevVideo = null;
+        }
+        this.video.addEventListener('canplay', () => {
+            this.video.classList.add('dplayer-video-current');
+            if (this.video.currentTime !== currentTime && !this.options.live) {
+                !this.options.live && this.seek(this.prevVideo.currentTime);
             }
+            if (!paused) {
+                this.video.play();
+            }
+
+        });
+    }
+    switchLine (line_id, line_name, target) {
+        if (this.line_id == line_id || this.switchingLine) {
+            return;
+        } else {
+            this.line_id = line_id;
+        }
+        this.switchingLine = true;
+        this.template.lineButton.innerHTML = line_name;
+        this.quality.url = this.quality.url + '&line=' + this.line_id;
+        this.template.lineList.querySelectorAll('.dplayer-line-item').forEach((item) => {item.classList.remove('active');});
+        target.classList.add('active');
+        const paused = this.video.paused;
+        this.video.pause();
+        const videoHTML = tplVideo({
+            current:false,
+            pic:null,
+            screenshot: this.options.buttons.screenshot,
+            preload: 'auto',
+            url: this.quality.url,
+            subtitle: this.options.subtitle,
+            isAndroid:this.isAndroid
+        });
+        const videoEle = new DOMParser().parseFromString(videoHTML, 'text/html').body.firstChild;
+        this.template.videoWrap.insertBefore(videoEle, this.template.videoWrap.getElementsByTagName('div')[0]);
+        this.prevVideo = this.video;
+        this.video = videoEle;
+        this.pause();
+        this.initVideo(this.video, this.quality.type || this.options.video.type);
+        this.notice(`${this.tran('Switching to')} ${line_name}`, -1);
+        this.events.trigger('line_start', line_id);
+        let currentTime = '';
+        if (this.prevVideo) {
+            currentTime = this.prevVideo.currentTime;
+            this.template.videoWrap.removeChild(this.prevVideo);
+            this.prevVideo = null;
+        }
+        this.video.addEventListener('canplay', () => {
+            this.video.classList.add('dplayer-video-current');
+            if (this.video.currentTime !== currentTime && !this.options.live) {
+                !this.options.live && this.seek(this.prevVideo.currentTime);
+            }
+            if (!paused) {
+                this.video.play();
+            }
+            this.notice(`${this.tran('Switched to')} ${line_name}`);
+            this.switchingLine = false;
+            this.events.trigger('line_end');
         });
     }
     switchQuality (index) {
@@ -634,6 +628,7 @@ class DPlayer {
         }
         this.switchingQuality = true;
         this.quality = this.options.video.quality[index];
+        this.quality.url = this.quality.url + '&line=' + this.line_id;
         this.template.qualityButton.innerHTML = this.quality.name;
         this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
@@ -653,14 +648,13 @@ class DPlayer {
         this.prevVideo = this.video;
         this.video = videoEle;
         this.initVideo(this.video, this.quality.type || this.options.video.type);
-        if (!this.options.live) {this.seek(this.prevVideo.currentTime);}
         this.notice(`${this.tran('Switching to')} ${this.quality.name} ${this.tran('quality')}`, -1);
         this.events.trigger('quality_start', this.quality);
 
-        this.on('canplay', () => {
+        this.video.addEventListener('canplay', () => {
             if (this.prevVideo) {
                 if (this.video.currentTime !== this.prevVideo.currentTime) {
-                    this.options.live && this.seek(this.prevVideo.currentTime);
+                    !this.options.live && this.seek(this.prevVideo.currentTime);
                     return;
                 }
                 this.template.videoWrap.removeChild(this.prevVideo);

@@ -128,20 +128,31 @@ function initPlayers () {
                 {
                     name: '标清',
                     type: 'flv',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
+                    // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100109'
                 },
                 {
                     name: '高清',
                     type: 'flv',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=2&room_id=100120'
+                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
                 },
                 {
                     name: '超清',
                     type: 'flv',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=3&room_id=100120'
+                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
                 }
             ],
-            defaultQuality:0
+            defaultQuality:0,
+            defaultLine:0,
+            line:[
+                {
+                    line_name:'主线路',
+                    line_id:0
+                }, {
+                    line_name:'备用线路1',
+                    line_id:1
+                }
+            ]
         },
         danmaku: {
             bottom:'20px',

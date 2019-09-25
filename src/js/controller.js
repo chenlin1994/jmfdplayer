@@ -27,6 +27,7 @@ class Controller {
         this.initPlayedBar();
         (this.player.options.buttons.fullScreen ||  this.player.options.buttons.webFullScreen) && this.initFullButton();
         this.player.options.video.quality && this.initQualityButton();
+        this.player.options.video.line && this.initLineButton();
         this.player.options.buttons.screenshot && this.initScreenshotButton();
         this.player.options.buttons.subtitle && this.initSubtitleButton();
         this.initHighlights();
@@ -248,6 +249,16 @@ class Controller {
             this.player.template.qualityList.addEventListener('click', (e) => {
                 if (e.target.classList.contains('dplayer-quality-item')) {
                     this.player.switchQuality(e.target.dataset.index);
+                }
+            });
+        }
+    }
+
+    initLineButton () {
+        if (this.player.options.video.line) {
+            this.player.template.lineList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('dplayer-line-item')) {
+                    this.player.switchLine(e.target.dataset.index, e.target.innerText, e.target);
                 }
             });
         }
