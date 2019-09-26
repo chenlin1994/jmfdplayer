@@ -39,7 +39,7 @@ export default (options) => {
         !options.subtitle.color && (options.subtitle.color = '#fff');
     }
 
-    if (options.video.quality) {
+    if (options.video.quality && options.video.quality.length > 0) {
         options.video.url = options.video.quality[options.video.defaultQuality || 0].url + '&line=' + options.video.defaultLine;
     }
 

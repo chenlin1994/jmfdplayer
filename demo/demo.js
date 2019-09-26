@@ -118,29 +118,84 @@ function initPlayers () {
             }
         },
         // http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100109
-        video: {
-            // url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
+        video1: {
+            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
+        },
+        video:{
             quality:[
-                // {name:'超清', url:'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=1&format=3&agreement=2&transcod=3&room_id=100120', number:0, type:'auto'},
                 // {name:'超清', url:'http://txplay.qiuhui.com/live/100120.flv', number:0, type:'auto'},
                 // {name:'高清', url:'http://txplay.qiuhui.com/live/100120_hd.flv', number:1, type:'auto'},
                 // {name:'标清', url:'http://txplay.qiuhui.com/live/100120_ld.flv', number:2, type:'auto'}
+
+
                 {
                     name: '标清',
                     type: 'flv',
-                    // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
                     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100109'
                 },
                 {
                     name: '高清',
                     type: 'flv',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
                 },
                 {
                     name: '超清',
                     type: 'flv',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
                 }
+
+
+                // {
+                //     name: '标清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
+                // }
+
+
+                // {
+                //     name: '标清',
+                //     type: 'flv',
+                //     // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100144'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'flv',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100144'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'flv',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100144'
+                // }
+
+
+                // {
+                //     name: '标清',
+                //     type: 'hls',
+                //     // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100144'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100144'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100144'
+                // }
             ],
             defaultQuality:0,
             defaultLine:0,
@@ -167,13 +222,16 @@ window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，
     console.log(message);
 });
 
-window.dp1.on('error', (obj) => {
+window.dp1.on('error', (error) => {
     console.log('=========error===========');
-    console.log(obj);
+    console.log(error);
 });
-window.dp1.on('sourthError', (obj) => {
+window.dp1.on('canplay', () => {
+    console.log('==========canplay==============');
+});
+window.dp1.on('sourthError', (error) => {
     console.log('=======sourthError=======');
-    console.log(obj);
+    console.log(error);
 });
 window.dp1.on('reload', (quality) => {
     console.log('===========reload=================');
@@ -183,10 +241,8 @@ window.dp1.on('sendComment', (quality) => {
     console.log('===========sendComment============');
     console.log(quality);
 });
-window.dp1.on('ended', (quality) => {
-    console.log(2222223);
+window.dp1.on('ended', () => {
     console.log('===========ending============');
-    console.log(quality);
 });
 
 

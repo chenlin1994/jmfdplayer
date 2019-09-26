@@ -560,7 +560,7 @@ class DPlayer {
         }
         this.video.addEventListener('canplay', () => {
             this.video.classList.add('dplayer-video-current');
-            if (this.video.currentTime !== currentTime && !this.options.live) {
+            if (this.currentTime && this.video.currentTime !== currentTime && !this.options.live) {
                 !this.options.live && this.seek(this.prevVideo.currentTime);
             }
             if (!paused) {
@@ -577,7 +577,7 @@ class DPlayer {
         }
         this.switchingLine = true;
         this.template.lineButton.innerHTML = line_name;
-        this.quality.url = this.quality.url + '&line=' + this.line_id;
+        this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         this.template.lineList.querySelectorAll('.dplayer-line-item').forEach((item) => {item.classList.remove('active');});
         target.classList.add('active');
         const paused = this.video.paused;
@@ -607,7 +607,7 @@ class DPlayer {
         }
         this.video.addEventListener('canplay', () => {
             this.video.classList.add('dplayer-video-current');
-            if (this.video.currentTime !== currentTime && !this.options.live) {
+            if (this.currentTime && this.video.currentTime !== currentTime && !this.options.live) {
                 !this.options.live && this.seek(this.prevVideo.currentTime);
             }
             if (!paused) {
@@ -628,7 +628,7 @@ class DPlayer {
         }
         this.switchingQuality = true;
         this.quality = this.options.video.quality[index];
-        this.quality.url = this.quality.url + '&line=' + this.line_id;
+        this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         this.template.qualityButton.innerHTML = this.quality.name;
         this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
@@ -650,24 +650,24 @@ class DPlayer {
         this.initVideo(this.video, this.quality.type || this.options.video.type);
         this.notice(`${this.tran('Switching to')} ${this.quality.name} ${this.tran('quality')}`, -1);
         this.events.trigger('quality_start', this.quality);
-
+        let currentTime = '';
+        if (this.prevVideo) {
+            currentTime = this.prevVideo.currentTime;
+            this.template.videoWrap.removeChild(this.prevVideo);
+            this.prevVideo = null;
+        }
         this.video.addEventListener('canplay', () => {
-            if (this.prevVideo) {
-                if (this.video.currentTime !== this.prevVideo.currentTime) {
-                    !this.options.live && this.seek(this.prevVideo.currentTime);
-                    return;
-                }
-                this.template.videoWrap.removeChild(this.prevVideo);
-                this.video.classList.add('dplayer-video-current');
-                if (!paused) {
-                    this.video.play();
-                }
-                this.prevVideo = null;
-                this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
-                this.switchingQuality = false;
-
-                this.events.trigger('quality_end');
+            this.video.classList.add('dplayer-video-current');
+            if (currentTime &&  this.video.currentTime !== this.prevVideo.currentTime) {
+                !this.options.live && this.seek(this.prevVideo.currentTime);
+                return;
             }
+            if (!paused) {
+                this.video.play();
+            }
+            this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
+            this.switchingQuality = false;
+            this.events.trigger('quality_end');
         });
     }
 

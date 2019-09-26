@@ -6,7 +6,7 @@ class Events {
             'abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'ended', 'error',
             'loadeddata', 'loadedmetadata', 'loadstart', 'mozaudioavailable', 'pause', 'play',
             'playing', 'progress', 'ratechange', 'seeked', 'seeking', 'stalled', 'suspend',
-            'timeupdate', 'volumechange', 'waiting', 
+            'timeupdate', 'volumechange', 'waiting',
         ];
         this.playerEvents = [
             'screenshot',
@@ -19,7 +19,7 @@ class Events {
             'destroy',
             'resize',
             'fullscreen', 'fullscreen_cancel', 'webfullscreen', 'webfullscreen_cancel',
-            'subtitle_show', 'subtitle_hide', 'subtitle_change','sendComment', 'reload','sourthError'
+            'subtitle_show', 'subtitle_hide', 'subtitle_change', 'sendComment', 'reload', 'sourthError', 'line_start', 'line_end'
         ];
     }
 
