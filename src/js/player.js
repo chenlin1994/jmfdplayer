@@ -220,6 +220,8 @@ class DPlayer {
         this.video.pause();
         this.timer.disable('loading');
         // 弹幕不暂停
+        // this.container.classList.remove('dplayer-playing');
+        // this.container.classList.add('dplayer-paused');
         !this.options.live && this.container.classList.remove('dplayer-playing');
         !this.options.live && this.container.classList.add('dplayer-paused');
         if (this.danmaku && !this.options.live) {
@@ -356,8 +358,10 @@ class DPlayer {
                         hls.loadSource(video.src);
                         hls.attachMedia(video);
                         hls.on(Hls.Events.ERROR, (event, data) => {
-                            this.events.trigger('error', data);
-                            this.events.trigger('sourthError', data);
+                            if (data.type == 'networkError') {
+                                this.events.trigger('error', data);
+                                this.events.trigger('sourthError', data);
+                            }
                         });
                         window.hlsObject = hls;
                         this.events.on('destroy', () => {

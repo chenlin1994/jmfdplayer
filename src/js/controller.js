@@ -249,6 +249,12 @@ class Controller {
             this.player.template.qualityList.addEventListener('click', (e) => {
                 if (e.target.classList.contains('dplayer-quality-item')) {
                     this.player.switchQuality(e.target.dataset.index);
+                    let dom = e.currentTarget.parentNode;
+                    dom.classList.add('hide');
+                    setTimeout(() => {
+                        dom.classList.remove('hide');
+                        dom = null;
+                    }, 100);
                 }
             });
         }
@@ -259,6 +265,12 @@ class Controller {
             this.player.template.lineList.addEventListener('click', (e) => {
                 if (e.target.classList.contains('dplayer-line-item')) {
                     this.player.switchLine(e.target.dataset.index, e.target.innerText, e.target);
+                    let dom = e.currentTarget.parentNode;
+                    dom.classList.add('hide');
+                    setTimeout(() => {
+                        dom.classList.remove('hide');
+                        dom = null;
+                    }, 100);
                 }
             });
         }

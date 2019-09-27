@@ -123,49 +123,43 @@ function initPlayers () {
         },
         video:{
             quality:[
-                // {name:'超清', url:'http://txplay.qiuhui.com/live/100120.flv', number:0, type:'auto'},
-                // {name:'高清', url:'http://txplay.qiuhui.com/live/100120_hd.flv', number:1, type:'auto'},
-                // {name:'标清', url:'http://txplay.qiuhui.com/live/100120_ld.flv', number:2, type:'auto'}
+                // {
+                //     name: '标清',
+                //     type: 'flv',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100109'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'flv',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'flv',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
+                // }
 
 
                 {
                     name: '标清',
-                    type: 'flv',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100109'
+                    type: 'hls',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
                 },
                 {
                     name: '高清',
-                    type: 'flv',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
+                    type: 'hls',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
                 },
                 {
                     name: '超清',
-                    type: 'flv',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
+                    type: 'hls',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
                 }
 
 
                 // {
                 //     name: '标清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
-                // }
-
-
-                // {
-                //     name: '标清',
                 //     type: 'flv',
-                //     // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
                 //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100144'
                 // },
                 // {
@@ -183,7 +177,6 @@ function initPlayers () {
                 // {
                 //     name: '标清',
                 //     type: 'hls',
-                //     // url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100120'
                 //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100144'
                 // },
                 // {

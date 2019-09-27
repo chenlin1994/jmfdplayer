@@ -724,6 +724,9 @@
                     display: block;
                 }
             }
+            .hide{
+                display: none !important;
+            }
             .dplayer-line-mask {
                 display:none;
                 position: absolute;
@@ -770,6 +773,9 @@
                 .dplayer-quality-mask {
                     display: block;
                 }
+            }
+            .hide{
+                display: none !important;
             }
             .dplayer-quality-mask {
                 display: none;
