@@ -138,23 +138,32 @@ function initPlayers () {
                 //     type: 'flv',
                 //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
                 // }
-
-
                 {
-                    name: '标清',
-                    type: 'hls',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
+                    name:'高清',
+                    type: 'auto',
+                    url:'http://scorevideo.air-smart.com.cn/org/1569562212.flv?time=1569577528&auth_token=8ae90a53c9ffe9fb36200ff85367f317'
                 },
                 {
-                    name: '高清',
-                    type: 'hls',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
-                },
-                {
-                    name: '超清',
-                    type: 'hls',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
+                    name:'超清',
+                    type:'auto',
+                    url:'http://scorevideo.air-smart.com.cn/org/1569562212/playlist.m3u8?time=1569577528&auth_token=dab884683915d9e153cf04b44136373c'
                 }
+
+                // {
+                //     name: '标清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
+                // }
 
 
                 // {
@@ -191,16 +200,16 @@ function initPlayers () {
                 // }
             ],
             defaultQuality:0,
-            defaultLine:0,
-            line:[
-                {
-                    line_name:'主线路',
-                    line_id:0
-                }, {
-                    line_name:'备用线路1',
-                    line_id:1
-                }
-            ]
+            // defaultLine:0,
+            // line:[
+            //     {
+            //         line_name:'主线路',
+            //         line_id:0
+            //     }, {
+            //         line_name:'备用线路1',
+            //         line_id:1
+            //     }
+            // ]
         },
         danmaku: {
             bottom:'20px',
@@ -242,6 +251,9 @@ window.dp1.on('suspend', () => {
 });
 window.dp1.on('loadedmetadata', () => {
     console.log('=====loadedmetadata============');
+});
+window.dp1.on('suspend', () => {
+    console.log('============suspend============');
 });
 
 // return;

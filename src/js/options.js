@@ -40,7 +40,11 @@ export default (options) => {
     }
 
     if (options.video.quality && options.video.quality.length > 0) {
-        options.video.url = options.video.quality[options.video.defaultQuality || 0].url + '&line=' + options.video.defaultLine;
+        if (options.video.quality[options.video.defaultQuality || 0].url.indexOf('/distribute') == -1) {
+            options.video.url = options.video.quality[options.video.defaultQuality || 0].url;
+        }else {
+            options.video.url = options.video.quality[options.video.defaultQuality || 0].url + '&line=' + options.video.defaultLine;
+        }
     }
 
     if (options.lang) {

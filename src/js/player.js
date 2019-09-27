@@ -565,7 +565,7 @@ class DPlayer {
         this.video.addEventListener('canplay', () => {
             this.video.classList.add('dplayer-video-current');
             if (this.currentTime && this.video.currentTime !== currentTime && !this.options.live) {
-                !this.options.live && this.seek(this.prevVideo.currentTime);
+                !this.options.live && this.seek(currentTime);
             }
             if (!paused) {
                 this.video.play();
@@ -612,7 +612,7 @@ class DPlayer {
         this.video.addEventListener('canplay', () => {
             this.video.classList.add('dplayer-video-current');
             if (this.currentTime && this.video.currentTime !== currentTime && !this.options.live) {
-                !this.options.live && this.seek(this.prevVideo.currentTime);
+                !this.options.live && this.seek(currentTime);
             }
             if (!paused) {
                 this.video.play();
@@ -632,7 +632,7 @@ class DPlayer {
         }
         this.switchingQuality = true;
         this.quality = this.options.video.quality[index];
-        this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
+        this.quality.url.indexOf('/distribute') == -1 ? '' : this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         this.template.qualityButton.innerHTML = this.quality.name;
         this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
@@ -662,8 +662,8 @@ class DPlayer {
         }
         this.video.addEventListener('canplay', () => {
             this.video.classList.add('dplayer-video-current');
-            if (currentTime &&  this.video.currentTime !== this.prevVideo.currentTime) {
-                !this.options.live && this.seek(this.prevVideo.currentTime);
+            if (currentTime &&  this.video.currentTime !==  currentTime && !this.options.live) {
+                !this.options.live && this.seek(currentTime);
                 return;
             }
             if (!paused) {
