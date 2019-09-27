@@ -355,9 +355,9 @@ class DPlayer {
                         const hls = new Hls();
                         hls.loadSource(video.src);
                         hls.attachMedia(video);
-                        hls.on(Hls.Events.ERROR, (e) => {
-                            this.events.trigger('error', e);
-                            this.events.trigger('sourthError', e);
+                        hls.on(Hls.Events.ERROR, (event, data) => {
+                            this.events.trigger('error', data);
+                            this.events.trigger('sourthError', data);
                         });
                         window.hlsObject = hls;
                         this.events.on('destroy', () => {

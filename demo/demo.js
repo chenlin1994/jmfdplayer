@@ -244,7 +244,12 @@ window.dp1.on('sendComment', (quality) => {
 window.dp1.on('ended', () => {
     console.log('===========ending============');
 });
-
+window.dp1.on('suspend', () => {
+    console.log('========suspend=========');
+});
+window.dp1.on('loadedmetadata', () => {
+    console.log('=====loadedmetadata============');
+});
 
 // return;
 // dp2
