@@ -529,7 +529,7 @@ class DPlayer {
             });
         }
 
-        this.options.buttons.volumeButton && this.volume(this.user.get('volume'), true, true);
+        this.options.buttons.volumeButton && !utils.isMobile  && this.volume(this.user.get('volume'), true, true);
 
         if (this.options.buttons.subtitle) {
             this.subtitle = new Subtitle(this.template.subtitle, this.video, this.options.buttons.subtitle, this.events);

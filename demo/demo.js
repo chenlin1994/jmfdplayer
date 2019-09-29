@@ -1,5 +1,6 @@
 // stats.js: JavaScript Performance Monitor
 const stats = new Stats();
+
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild(stats.dom);
 function animate () {
@@ -84,9 +85,7 @@ function initPlayers () {
             settingCustomer:{  // 自定义设置
                 icon:''
             },
-            setting:{    // 设置
-                icon:''
-            },
+
             comment:{  // 评论
                 icon:'',
                 icon_pallette:'',
@@ -118,10 +117,10 @@ function initPlayers () {
             }
         },
         // http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100109
-        video1: {
+        video: {
             url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
         },
-        video:{
+        video1:{
             quality:[
                 // {
                 //     name: '标清',
