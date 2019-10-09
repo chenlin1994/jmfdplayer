@@ -87,7 +87,7 @@ class DPlayer {
                 callback: () => {
                     setTimeout(() => {
                         this.template.danmakuLoading.style.display = 'none';
-                        console.log(this);
+                        // console.log(this);
                         // autoplay
                         if (this.options.autoplay) {
                             this.play();
