@@ -96,7 +96,6 @@ class Comment {
         //     this.hide();
         // });
     }
-   
 }
 
 export default Comment;

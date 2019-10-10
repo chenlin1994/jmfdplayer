@@ -117,77 +117,76 @@ function initPlayers () {
             }
         },
         // http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100109
-        video: {
+        video1: {
             url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
         },
-        video1:{
+        video:{
             quality:[
                 // {
                 //     name: '标清',
                 //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100109'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100109'
                 // },
                 // {
                 //     name: '高清',
                 //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100109'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100109'
                 // },
                 // {
                 //     name: '超清',
                 //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100109'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100109'
                 // }
 
 
                 // {
                 //     name: '标清',
                 //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100109'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=1&room_id=100109'
                 // },
                 // {
                 //     name: '高清',
                 //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100109'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=2&room_id=100109'
                 // },
                 // {
                 //     name: '超清',
                 //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100109'
-                // }
-
-
-                // {
-                //     name: '标清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100144'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100144'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100144'
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=100109'
                 // }
 
 
                 {
                     name: '标清',
-                    type: 'hls',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=1&room_id=100144'
+                    type: 'flv',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100113'
                 },
                 {
                     name: '高清',
-                    type: 'hls',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=2&room_id=100144'
+                    type: 'flv',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100113'
                 },
                 {
                     name: '超清',
-                    type: 'hls',
-                    url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=2&transcod=3&room_id=100144'
+                    type: 'flv',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100113'
                 }
+
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=2&room_id=100113'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=2&room_id=100113'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=100113'
+                // }
 
 
                 // {
@@ -202,6 +201,9 @@ function initPlayers () {
                 {
                     line_name:'主线路',
                     line_id:0
+                }, {
+                    line_name:'备用线路2',
+                    line_id:2
                 }, {
                     line_name:'备用线路1',
                     line_id:1
@@ -221,13 +223,14 @@ function initPlayers () {
 //     console.log(message);
 // });
 
-// window.dp1.on('error', (error) => {
-//     console.log('=========error===========');
-//     console.log(error);
-// });
-// window.dp1.on('canplay', () => {
-//     console.log('==========canplay==============');
-// });
+window.dp1.on('error', (error) => {
+    console.log('=========error===========');
+    console.log(error);
+    window.dp1.reload();
+});
+window.dp1.on('canplay', () => {
+    console.log('==========canplay==============');
+});
 // window.dp1.on('sourthError', (error) => {
 //     console.log('=======sourthError=======');
 //     console.log(error);

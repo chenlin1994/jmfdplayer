@@ -358,7 +358,7 @@ class DPlayer {
                         hls.loadSource(video.src);
                         hls.attachMedia(video);
                         hls.on(Hls.Events.ERROR, (event, data) => {
-                            if (data.type == 'networkError') {
+                            if (data.type === 'networkError') {
                                 this.events.trigger('error', data);
                                 this.events.trigger('sourthError', data);
                             }
@@ -548,7 +548,6 @@ class DPlayer {
             subtitle:this.options.subtitle,
             isAndroid:this.isAndroid
         });
-        const paused = this.video.paused;
         const videoEle = new DOMParser().parseFromString(videoHTML, 'text/html').body.firstChild;
         this.template.videoWrap.insertBefore(videoEle, this.template.videoWrap.getElementsByTagName('div')[0]);
         this.prevVideo = this.video;
@@ -567,14 +566,12 @@ class DPlayer {
             if (this.currentTime && this.video.currentTime !== currentTime && !this.options.live) {
                 !this.options.live && this.seek(currentTime);
             }
-            if (!paused) {
-                this.video.play();
-            }
+            this.video.play();
 
         });
     }
     switchLine (line_id, line_name, target) {
-        if (this.line_id == line_id || this.switchingLine) {
+        if (this.line_id === line_id || this.switchingLine) {
             return;
         } else {
             this.line_id = line_id;
@@ -621,6 +618,10 @@ class DPlayer {
             this.switchingLine = false;
             this.events.trigger('line_end');
         });
+        this.on('error', () => {
+            this.notice('');
+            this.switchingLine = false;
+        });
     }
     switchQuality (index) {
         index = typeof index === 'string' ? parseInt(index) : index;
@@ -632,7 +633,7 @@ class DPlayer {
         }
         this.switchingQuality = true;
         this.quality = this.options.video.quality[index];
-        this.quality.url.indexOf('/distribute') == -1 ? '' : this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
+        this.quality.url.indexOf('/distribute') === -1 ? '' : this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         this.template.qualityButton.innerHTML = this.quality.name;
         this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
         this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
@@ -672,6 +673,10 @@ class DPlayer {
             this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
             this.switchingQuality = false;
             this.events.trigger('quality_end');
+        });
+        this.on('error', () => {
+            this.notice('');
+            this.switchingQuality = false;
         });
     }
 
