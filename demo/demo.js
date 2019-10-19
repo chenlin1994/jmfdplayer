@@ -50,7 +50,7 @@ function initPlayers () {
     window.dp1 = new DPlayer({
         container: document.getElementById('dplayer1'),
         autoplay: true,
-        live: true,
+        live: false,
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
@@ -82,45 +82,45 @@ function initPlayers () {
                 //     console.log(obj);
                 // }
             },
-            settingCustomer:{  // 自定义设置
-                icon:''
-            },
+            // settingCustomer:{  // 自定义设置
+            //     icon:''
+            // },
 
-            comment:{  // 评论
-                icon:'',
-                icon_pallette:'',
-                icon_send:''
-            },
-            screenshot:{  // 截图
-                icon:'',
-                // callback: (obj) => {
-                //     console.log('========screenshot=============');
-                //     console.log(obj);
-                // }
-            },
-            subtitle:{  // 字幕
-                icon:'',
-                // callback: (obj) => {
-                //     console.log('========subtitle=============');
-                //     console.log(obj);
-                // }
-            },
-            webFullScreen:{  // 网页全屏
-                icon:'',
-                // callback:(obj) => {
-                //     console.log('========webFullScreen=============');
-                //     console.log(obj);
-                // }
-            },
+            // comment:{  // 评论
+            //     icon:'',
+            //     icon_pallette:'',
+            //     icon_send:''
+            // },
+            // screenshot:{  // 截图
+            //     icon:'',
+            //     // callback: (obj) => {
+            //     //     console.log('========screenshot=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
+            // subtitle:{  // 字幕
+            //     icon:'',
+            //     // callback: (obj) => {
+            //     //     console.log('========subtitle=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
+            // webFullScreen:{  // 网页全屏
+            //     icon:'',
+            //     // callback:(obj) => {
+            //     //     console.log('========webFullScreen=============');
+            //     //     console.log(obj);
+            //     // }
+            // },
             timePanel:{
 
             }
         },
         // http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100109
-        video1: {
+        video: {
             url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
         },
-        video:{
+        video1:{
             quality:[
                 // {
                 //     name: '标清',

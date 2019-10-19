@@ -5,7 +5,7 @@ export default (options) => {
 
     // default options
     const defaultOption = {
-        container: options.element || document.getElementsByClassName('dplayer')[0],
+        container: document.getElementsByClassName('dplayer')[0],
         live: false,
         autoplay: false,
         theme: '#b7daff',
@@ -40,6 +40,13 @@ export default (options) => {
     }
 
     if (options.video.quality && options.video.quality.length > 0) {
+        // if (options.video.line) {
+        //     options.video.url = options.video.quality[options.video.defaultQuality || 0].url + '&line=' + options.video.line[options.video.defaultLine || 0].defaultLine ;
+        // } else {
+        //     options.video.url = options.video.quality[options.video.defaultQuality || 0].url;
+        // }
+
+
         if (options.video.quality[options.video.defaultQuality || 0].url.indexOf('/distribute') === -1) {
             options.video.url = options.video.quality[options.video.defaultQuality || 0].url;
         } else {

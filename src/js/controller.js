@@ -24,7 +24,7 @@ class Controller {
 
         this.player.options.buttons.playButton && this.initPlayButton();
         this.initThumbnails();
-        this.initPlayedBar();
+        !this.player.options.live && this.initPlayedBar();
         (this.player.options.buttons.fullScreen ||  this.player.options.buttons.webFullScreen) && this.initFullButton();
         this.player.options.video.quality && this.initQualityButton();
         this.player.options.video.line && this.initLineButton();
@@ -66,13 +66,13 @@ class Controller {
             });
         }
         else {
-            // this.player.template.videoWrap.addEventListener('click', () => {
+            this.player.template.videoWrap.addEventListener('click', () => {
 
-            //     this.player.toggle();
-            // });
-            // this.player.template.controllerMask.addEventListener('click', () => {
-            //     this.player.toggle();
-            // });
+                this.player.toggle();
+            });
+            this.player.template.controllerMask.addEventListener('click', () => {
+                this.player.toggle();
+            });
         }
     }
 

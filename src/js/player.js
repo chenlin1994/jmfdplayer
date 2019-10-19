@@ -34,12 +34,15 @@ class DPlayer {
      */
     constructor (options) {
         this.options = handleOption(options);
-        this.isAndroid = navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1;
+        this.isAndroid = utils.isAndroid;
         if (this.options.video.quality) {
-            this.qualityIndex = this.options.video.defaultQuality;
-            this.quality = this.options.video.quality[this.options.video.defaultQuality];
+            this.qualityIndex = this.options.video.defaultQuality || 0;
+            this.quality = this.options.video.quality[this.qualityIndex];
         }
         if (this.options.video.line) {
+            // this.lineIndex = this.options.video.defaultLine || 0;
+            // this.line = this.options.video.line[this.lineIndex];
+
             this.line_id = this.options.video.defaultLine;
         }
         this.tran = new i18n(this.options.lang).tran;
@@ -473,7 +476,7 @@ class DPlayer {
         // show video loaded bar: to inform interested parties of progress downloading the media
         this.on('progress', () => {
             const percentage = video.buffered.length ? video.buffered.end(video.buffered.length - 1) / video.duration : 0;
-            this.bar.set('loaded', percentage, 'width');
+            !this.options.live && this.bar.set('loaded', percentage, 'width');
         });
 
         // video download error: an error occurs

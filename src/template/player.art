@@ -107,8 +107,8 @@
             <span class="dplayer-dtime">0:00</span>
         </span>
         {{ /if }}
-        {{ if isMobile}}
-        <div class="dplayer-bar-wrap dplayer-bar-wrap-mobile">
+        {{ if isMobile  }}
+        <div class="dplayer-bar-wrap dplayer-bar-wrap-mobile {{ if options.live}} hide {{ /if }}" >
             <div class="dplayer-bar-time hidden">00:00</div>
             <div class="dplayer-bar-preview"></div>
             <div class="dplayer-bar">
