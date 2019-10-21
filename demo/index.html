@@ -18,36 +18,38 @@
 </head>
 
 <body class="markdown-body">
-    <h2>在 dialog 中承载视频</h2>
-    <h3 id="dplayer-dialog" class="show-dialog">Show Dialog</h3>
-    <div id="float-dplayer" class="float-dplayer">
-        <div id="dplayer-container" class="dplayer-container"></div>
-        <h3 id="close-dialog" class="close-dialog">X</h3>
-    </div>
-
-    <h2 id="quick-start">Quick Start</h2>
-    <div class="example">
-        <button class="btn" onclick="reload()">reload</button>
-        <button class="btn" onclick="empty()">empty</button>
-        <button class="btn" onclick="speed(3)">speed</button>
-        <div style="width:100%;height:371px;background:black">
-            <div id="dplayer1"></div>
+    <div>
+        <h2>在 dialog 中承载视频</h2>
+        <h3 id="dplayer-dialog" class="show-dialog">Show Dialog</h3>
+        <div id="float-dplayer" class="float-dplayer">
+            <div id="dplayer-container" class="dplayer-container"></div>
+            <h3 id="close-dialog" class="close-dialog">X</h3>
         </div>
-        
-    </div>
 
-    <h2 id="options">Options</h2>
-    <div class="example">
-        <button class="btn" onclick="switchDPlayer()">Switch Video</button>
-        <button class="btn" onclick="dp2.notice('Notice演示')">notice</button>
-        <button class="btn" onclick="dp2.seek(120)">seek</button>
-        <button class="btn" onclick="dp2.volume(0.2)">volume</button>
-        <button class="btn" onclick="dp2.toggle()">toggle</button>
-        <button class="btn" onclick="dp2.destroy()">destroy</button>
-        <button class="btn" onclick="dp2.danmaku.hide()">danmaku.hide</button>
-        <button class="btn" onclick="dp2.danmaku.show()">danmaku.show</button>
-        <div id="dplayer2"></div>
-        <div id="events"></div>
+        <h2 id="quick-start">Quick Start</h2>
+        <div class="example">
+            <button class="btn" onclick="reload()">reload</button>
+            <button class="btn" onclick="empty()">empty</button>
+            <button class="btn" onclick="speed(3)">speed</button>
+            <div style="width:100%;height:371px;background:black">
+                <div id="dplayer1"></div>
+            </div>
+            
+        </div>
+
+        <h2 id="options">Options</h2>
+        <div class="example">
+            <button class="btn" onclick="switchDPlayer()">Switch Video</button>
+            <button class="btn" onclick="dp2.notice('Notice演示')">notice</button>
+            <button class="btn" onclick="dp2.seek(120)">seek</button>
+            <button class="btn" onclick="dp2.volume(0.2)">volume</button>
+            <button class="btn" onclick="dp2.toggle()">toggle</button>
+            <button class="btn" onclick="dp2.destroy()">destroy</button>
+            <button class="btn" onclick="dp2.danmaku.hide()">danmaku.hide</button>
+            <button class="btn" onclick="dp2.danmaku.show()">danmaku.show</button>
+            <div id="dplayer2"></div>
+            <div id="events"></div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/stats.js"></script>

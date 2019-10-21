@@ -1,10 +1,18 @@
 body {
     max-width: 700px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 45px 10px;
     position: relative;
 }
+.box{
+    position: absolute;
+    left:50%;
+    right:0;
+    top:0;
+    bottom:0;
+    transform: translateX(-50%);
 
+}
 .show-dialog {
     cursor: pointer;
     border: 1px solid #f00;

@@ -145,8 +145,6 @@ class Controller {
             if (this.player.video.duration) {
                 const px = utils.cumulativeOffset(this.player.template.playedBarWrap).left;
                 const tx = (e.clientX || e.changedTouches[0].clientX) - px;
-                console.log(111111);
-                console.log(px, tx);
                 if (tx < 0 || tx > this.player.template.playedBarWrap.offsetWidth) {
                     return;
                 }

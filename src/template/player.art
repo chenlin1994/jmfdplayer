@@ -1,5 +1,5 @@
 <div class="dplayer-mask"></div>
-<div class="dplayer-video-wrap">
+<div class="dplayer-video-wrap jmfplayer-video-wrap">
     {{ include './video.art' video }}
     {{ if options.logo }}
     <div class="dplayer-logo">

@@ -45,12 +45,42 @@ function speed (number) {
 
 function initPlayers () {
     // dplayer-float
-
-    // dp1
-    window.dp1 = new DPlayer({
+    const options = {
         container: document.getElementById('dplayer1'),
         autoplay: true,
+        screenshot: true,
         live: false,
+
+        buttons:{
+            playButton:{
+
+            },
+            volumeButton:{
+
+            },
+            setting:{
+
+            },
+            screenshot:{
+
+            },
+            fullScreen:{
+
+            },
+            timePanel:{
+
+            },
+            webFullScreen:{}
+        },
+        video: {
+            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4',
+            thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
+        }
+    };
+    const options1 = {
+        container: document.getElementById('dplayer1'),
+        screenshot: true,
+        live: true,
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
@@ -82,47 +112,43 @@ function initPlayers () {
                 //     console.log(obj);
                 // }
             },
-            // settingCustomer:{  // 自定义设置
-            //     icon:''
-            // },
-            // setting:{
+            settingCustomer:{  // 自定义设置
+                icon:''
+            },
+            setting:{
 
-            // },
-            // comment:{  // 评论
-            //     icon:'',
-            //     icon_pallette:'',
-            //     icon_send:''
-            // },
+            },
+            comment:{  // 评论
+                icon:'',
+                icon_pallette:'',
+                icon_send:''
+            },
             screenshot:{  // 截图
                 icon:'',
+                callback: (obj) => {
+                    console.log('========screenshot=============');
+                    console.log(obj);
+                }
+            },
+            subtitle:{  // 字幕
+                icon:'',
                 // callback: (obj) => {
-                //     console.log('========screenshot=============');
+                //     console.log('========subtitle=============');
                 //     console.log(obj);
                 // }
             },
-            // subtitle:{  // 字幕
-            //     icon:'',
-            //     // callback: (obj) => {
-            //     //     console.log('========subtitle=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
             webFullScreen:{  // 网页全屏
                 icon:'',
-                // callback:(obj) => {
-                //     console.log('========webFullScreen=============');
-                //     console.log(obj);
-                // }
+                callback:(obj) => {
+                    console.log('========webFullScreen=============');
+                    console.log(obj);
+                }
             },
             timePanel:{
 
             }
         },
-        // http://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?line=0&format=3&agreement=2&transcod=1&room_id=100109
-        video: {
-            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4'
-        },
-        video1:{
+        video:{
             quality:[
                 // {
                 //     name: '标清',
@@ -216,9 +242,10 @@ function initPlayers () {
             bottom:'20px',
             top:'20px'
 
-        },
-        // contextmenu: [],
-    });
+        }
+    };
+    // dp1
+    window.dp1 = new DPlayer(options);
 }
 // window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
 //     console.log('============sendComment=============');
