@@ -23,7 +23,6 @@ import tplVideo from '../template/video.art';
 
 let index = 0;
 const instances = [];
-
 class DPlayer {
 
     /**
@@ -34,7 +33,6 @@ class DPlayer {
      */
     constructor (options) {
         this.options = handleOption(options);
-        this.isAndroid = utils.isAndroid;
         if (this.options.video.quality) {
             this.qualityIndex = this.options.video.defaultQuality || 0;
             this.quality = this.options.video.quality[this.qualityIndex];
@@ -69,7 +67,7 @@ class DPlayer {
             options: this.options,
             index: index,
             tran: this.tran,
-            isAndroid:this.isAndroid,
+            isAndroid:utils.isAndroid,
             isMobile:utils.isMobile
         });
 
@@ -90,7 +88,6 @@ class DPlayer {
                 callback: () => {
                     setTimeout(() => {
                         this.template.danmakuLoading.style.display = 'none';
-                        // console.log(this);
                         // autoplay
                         if (this.options.autoplay) {
                             this.play();

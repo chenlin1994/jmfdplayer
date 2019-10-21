@@ -6,6 +6,7 @@ class Controller {
     constructor (player) {
         this.player = player;
         this.autoHideTimer = 0;
+        this.disableAutoHide = false;
         this.volume = true;
         if (!utils.isMobile) {
             this.player.container.addEventListener('mousemove', () => {
@@ -20,8 +21,17 @@ class Controller {
             this.player.on('pause', () => {
                 this.setAutoHide();
             });
+        } else {
+            this.player.container.addEventListener('click', () => {
+                this.toggle();
+            });
+            this.player.on('play', () => {
+                this.setAutoHide();
+            });
+            this.player.on('pause', () => {
+                this.setAutoHide();
+            });
         }
-
         this.player.options.buttons.playButton && this.initPlayButton();
         this.initThumbnails();
         !this.player.options.live && this.initPlayedBar();
@@ -63,15 +73,6 @@ class Controller {
             this.player.options.dblclick && this.player.template.videoWrap.addEventListener('dblclick', () => {
                 this.player.fullScreen.toggle('web');
                 clearTimeout(timer);
-            });
-        }
-        else {
-            this.player.template.videoWrap.addEventListener('click', () => {
-
-                this.player.toggle();
-            });
-            this.player.template.controllerMask.addEventListener('click', () => {
-                this.player.toggle();
             });
         }
     }
@@ -144,6 +145,8 @@ class Controller {
             if (this.player.video.duration) {
                 const px = utils.cumulativeOffset(this.player.template.playedBarWrap).left;
                 const tx = (e.clientX || e.changedTouches[0].clientX) - px;
+                console.log(111111);
+                console.log(px, tx);
                 if (tx < 0 || tx > this.player.template.playedBarWrap.offsetWidth) {
                     return;
                 }
@@ -339,8 +342,8 @@ class Controller {
 
     hide () {
         this.player.container.classList.add('dplayer-hide-controller');
-        this.player.setting && this.player.setting.hide();
-        this.player.comment && this.player.comment.hide();
+        // this.player.setting && this.player.setting.hide();
+        // this.player.comment && this.player.comment.hide();
     }
 
     isShow () {

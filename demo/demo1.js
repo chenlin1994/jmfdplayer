@@ -37,7 +37,7 @@ function handleEvent () {
 
 function initPlayers () {
     // dplayer-float
-    window.dpFloat = new DPlayer({
+    window.dpFloat = new Dplayer({
         container: document.getElementById('dplayer-container'),
         preload: 'none',
         screenshot: true,

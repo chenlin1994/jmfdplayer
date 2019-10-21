@@ -85,19 +85,21 @@ function initPlayers () {
             // settingCustomer:{  // 自定义设置
             //     icon:''
             // },
+            // setting:{
 
+            // },
             // comment:{  // 评论
             //     icon:'',
             //     icon_pallette:'',
             //     icon_send:''
             // },
-            // screenshot:{  // 截图
-            //     icon:'',
-            //     // callback: (obj) => {
-            //     //     console.log('========screenshot=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
+            screenshot:{  // 截图
+                icon:'',
+                // callback: (obj) => {
+                //     console.log('========screenshot=============');
+                //     console.log(obj);
+                // }
+            },
             // subtitle:{  // 字幕
             //     icon:'',
             //     // callback: (obj) => {
@@ -105,13 +107,13 @@ function initPlayers () {
             //     //     console.log(obj);
             //     // }
             // },
-            // webFullScreen:{  // 网页全屏
-            //     icon:'',
-            //     // callback:(obj) => {
-            //     //     console.log('========webFullScreen=============');
-            //     //     console.log(obj);
-            //     // }
-            // },
+            webFullScreen:{  // 网页全屏
+                icon:'',
+                // callback:(obj) => {
+                //     console.log('========webFullScreen=============');
+                //     console.log(obj);
+                // }
+            },
             timePanel:{
 
             }
