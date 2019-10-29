@@ -1,6 +1,6 @@
 {
   "name": "jmfdplayer",
-  "version": "1.25.16",
+  "version": "1.25.17",
   "description": "Wow, such a lovely HTML5 danmaku video player",
   "main": "dist/DPlayer.min.js",
   "style": "dist/DPlayer.min.css",

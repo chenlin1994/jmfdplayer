@@ -48,6 +48,7 @@ class DPlayer {
         this.user = new User(this);
         this.container = this.options.container;
         this.container.classList.add('dplayer');
+        this.playerObj = null;
         if (!this.options.danmaku) {
             this.container.classList.add('dplayer-no-danmaku');
         }
@@ -351,7 +352,13 @@ class DPlayer {
             switch (this.type) {
             // https://github.com/video-dev/hls.js
             case 'hls':
-                window.hlsObject && window.hlsObject.destroy();
+                if (this.options.mutex && this.options.live) {
+                    if (this.playerObj) {
+                        this.playerObj.destroy();
+                        this.playerObj = null;
+                    }
+                }
+                // this.options.mutex && window.hlsObject && window.hlsObject.destroy();
                 if (Hls) {
                     if (Hls.isSupported()) {
                         const hls = new Hls();
@@ -363,7 +370,7 @@ class DPlayer {
                                 this.events.trigger('sourthError', data);
                             }
                         });
-                        window.hlsObject = hls;
+                        this.options.mutex && this.options.live && (this.playerObj = hls);
                         this.events.on('destroy', () => {
                             hls.destroy();
                         });
@@ -379,7 +386,12 @@ class DPlayer {
 
             // https://github.com/Bilibili/flv.js
             case 'flv':
-                window.flvObject && window.flvObject.destroy();
+                if (this.options.mutex && this.options.live) {
+                    if (this.playerObj) {
+                        this.playerObj.destroy();
+                        this.playerObj = null;
+                    }
+                }
                 if (flvjs) {
                     if (flvjs.isSupported()) {
                         const flvPlayer = flvjs.createPlayer({
@@ -394,7 +406,7 @@ class DPlayer {
                         });
                         flvPlayer.on('source_open', () => {
                         });
-                        window.flvObject = flvPlayer;
+                        this.options.mutex &&  this.options.live && (this.playerObj = flvPlayer);
                         this.events.on('destroy', () => {
                             flvPlayer.unload();
                             flvPlayer.detachMediaElement();
@@ -716,7 +728,14 @@ class DPlayer {
         this.timer.destroy();
         this.video.src = '';
         this.container.innerHTML = '';
-        this.events.trigger('destroy');
+        if (this.options.live && this.options.mutex) {
+            if (this.playerObj) {
+                this.playerObj.destroy();
+                this.playerObj = null;
+            }
+        } else {
+            this.events.trigger('destroy');
+        }
     }
 
     static get version () {
