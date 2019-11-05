@@ -251,7 +251,14 @@ function initPlayers () {
             bottom:'20px',
             top:'20px'
 
-        }
+        },
+        contextmenu:[
+            {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }
+        ]
+
     };
     // dp1
     window.dp1 = new DPlayer(options1);

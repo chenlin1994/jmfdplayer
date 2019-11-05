@@ -27,6 +27,10 @@ class ContextMenu {
             this.player.template.mask.addEventListener('click', () => {
                 this.hide();
             });
+            this.player.template.mask.addEventListener('contextmenu', () => {
+                this.hide();
+                return;
+            });
         });
     }
 
