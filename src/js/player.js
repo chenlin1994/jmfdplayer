@@ -42,6 +42,7 @@ class DPlayer {
             // this.line = this.options.video.line[this.lineIndex];
 
             this.line_id = this.options.video.defaultLine;
+            this.quality.url =  this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         }
         this.tran = new i18n(this.options.lang).tran;
         this.events = new Events();

@@ -193,37 +193,37 @@ function initPlayers () {
                 // }
 
 
-                // {
-                //     name: '标清',
-                //     type: 'flv',
-                //     url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100012'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'flv',
-                //     url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100012'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'flv',
-                //     url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100012'
-                // }
-
                 {
-                    name: '高清',
-                    type: 'hls',
-                    url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+                    name: '标清',
+                    type: 'flv',
+                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100012'
                 },
                 {
                     name: '高清',
-                    type: 'hls',
-                    url: 'https://tcplay.qiuhui.com/live/100012_hd.m3u8'
+                    type: 'flv',
+                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100012'
                 },
                 {
                     name: '超清',
-                    type: 'hls',
-                    url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+                    type: 'flv',
+                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100012'
                 }
+
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+                // },
+                // {
+                //     name: '高清',
+                //     type: 'hls',
+                //     url: 'https://tcplay.qiuhui.com/live/100012_hd.m3u8'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+                // }
 
 
                 // {
