@@ -296,13 +296,13 @@ window.dp1.on('canplay', () => {
     console.log('==========canplay==============');
 });
 window.dp1.on('loadedmetadata', function () {
-    const height = window.dp1.video.videoHeight;
-    const width = window.dp1.video.videoWidth;
-    window.dp1.video.style.width = width + 'px';
-    window.dp1.video.style.height = height + 'px';
-    window.dp1.video.style.margin = '0 auto';
-    console.log('==================');
-    console.log(height, width);
+    // const height = window.dp1.video.videoHeight;
+    // const width = window.dp1.video.videoWidth;
+    // window.dp1.video.style.width = width + 'px';
+    // window.dp1.video.style.height = height + 'px';
+    // window.dp1.video.style.margin = '0 auto';
+    // console.log('==================');
+    // console.log(height, width);
 });
 // window.dp1.on('sourthError', (error) => {
 //     console.log('=======sourthError=======');
