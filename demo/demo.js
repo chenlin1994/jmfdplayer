@@ -73,8 +73,12 @@ function initPlayers () {
             webFullScreen:{}
         },
         video: {
-            url:'http://static.qiuhui.com/avatar/6a8523da-c0fb-42c7-80f2-7a3cbbbe313d.mp4',
-            thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
+            // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
+            // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
+            // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
+            url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
+            // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
+            // type:'hls'
         }
     };
     const options1 = {
@@ -256,6 +260,21 @@ function initPlayers () {
             {
                 text:'haha',
                 link:'http://www.baidu.com'
+            },
+            {
+                text:'haha',
+                link:'http://www.baidu.com'
+            },
+            {
+                text:'haha',
+                link:'http://www.baidu.com'
+            },
+            {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
+                text:'haha',
+                link:'http://www.baidu.com'
             }
         ]
 
@@ -275,6 +294,15 @@ window.dp1.on('error', (error) => {
 });
 window.dp1.on('canplay', () => {
     console.log('==========canplay==============');
+});
+window.dp1.on('loadedmetadata', function () {
+    const height = window.dp1.video.videoHeight;
+    const width = window.dp1.video.videoWidth;
+    window.dp1.video.style.width = width + 'px';
+    window.dp1.video.style.height = height + 'px';
+    window.dp1.video.style.margin = '0 auto';
+    console.log('==================');
+    console.log(height, width);
 });
 // window.dp1.on('sourthError', (error) => {
 //     console.log('=======sourthError=======');
