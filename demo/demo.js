@@ -88,7 +88,6 @@ function initPlayers () {
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
-        screenshot: true,
         hotkey: true,
         preload: 'auto',
         volume: 0.7,
@@ -259,7 +258,9 @@ function initPlayers () {
         contextmenu:[
             {
                 text:'haha',
-                link:'http://www.baidu.com'
+                click:() => {
+                    console.log(this);
+                }
             },
             {
                 text:'haha',
@@ -270,6 +271,21 @@ function initPlayers () {
                 link:'http://www.baidu.com'
             },
             {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
+                text:'haha',
+                link:'http://www.baidu.com'
+            }, {
                 text:'haha',
                 link:'http://www.baidu.com'
             }, {

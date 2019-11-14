@@ -6,9 +6,9 @@
     padding: 5px 0;
     overflow: hidden;
     z-index: 3;
-    display: none;
+    visibility: hidden：hidden;
     &.dplayer-menu-show {
-        display: block;
+        visibility: show;
     }
     .dplayer-menu-item {
         height: 30px;
