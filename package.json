@@ -6,7 +6,7 @@
   "style": "dist/DPlayer.min.css",
   "scripts": {
     "start": "npm run dev",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress --display-error-details --colors",
+    "build": "rm -rf ./dist && cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress --display-error-details --colors",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack/dev.config.js --watch --colors",
     "test": "eslint src webpack",
     "docs:dev": "vuepress dev docs",

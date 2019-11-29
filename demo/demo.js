@@ -296,7 +296,7 @@ function initPlayers () {
 
     };
     // dp1
-    window.dp1 = new DPlayer(options1);
+    window.dp1 = new DPlayer(options);
 }
 // window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
 //     console.log('============sendComment=============');
@@ -347,4 +347,8 @@ window.dp1.on('loadedmetadata', function () {
 
 function closeVideo () {
     window.dp1.destroy();
+}
+
+function suspension () {
+    window.dp1.setSuspension(true);
 }

@@ -60,10 +60,10 @@ class Controller {
                 if (this.player.options.dblclick) {
                     clearTimeout(timer);
                     timer = setTimeout(() => {
-                        this.player.toggle();
+                        !this.player.suspension  && this.player.toggle();
                     }, 200);
                 } else {
-                    this.player.toggle();
+                    !this.player.suspension && this.player.toggle();
                 }
             });
             this.player.template.controllerMask.addEventListener('click', () => {

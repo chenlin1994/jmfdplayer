@@ -33,6 +33,7 @@ class DPlayer {
      */
     constructor (options) {
         this.options = handleOption(options);
+        this.suspension = false;
         if (this.options.video.quality) {
             this.qualityIndex = this.options.video.defaultQuality || 0;
             this.quality = this.options.video.quality[this.qualityIndex];
@@ -738,7 +739,9 @@ class DPlayer {
             this.events.trigger('destroy');
         }
     }
-
+    setSuspension (boolean) {
+        this.suspension = boolean;
+    }
     static get version () {
         /* global DPLAYER_VERSION */
         return DPLAYER_VERSION;
