@@ -101,7 +101,7 @@ module.exports = {
             GIT_HASH: JSON.stringify(gitRevisionPlugin.version())
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].min.css'
+            filename: 'DPlayer.min.css'
         })
     ],
 
