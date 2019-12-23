@@ -2,7 +2,7 @@
   "name": "jmfdplayer",
   "version": "1.25.26",
   "description": "Wow, such a lovely HTML5 danmaku video player",
-  "main": "dist/d-player.min.js",
+  "main": "dist/Dplayer.min.js",
   "style": "dist/DPlayer.min.css",
   "scripts": {
     "start": "npm run dev",
