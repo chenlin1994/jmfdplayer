@@ -56,7 +56,7 @@ class Controller {
         });
 
         if (!utils.isMobile) {
-            this.player.template.videoWrap.addEventListener('click', () => {
+            this.player.options.click && this.player.template.videoWrap.addEventListener('click', () => {
                 if (this.player.options.dblclick) {
                     clearTimeout(timer);
                     timer = setTimeout(() => {
@@ -66,7 +66,7 @@ class Controller {
                     !this.player.suspension && this.player.toggle();
                 }
             });
-            this.player.template.controllerMask.addEventListener('click', () => {
+            this.player.options.click && this.player.template.controllerMask.addEventListener('click', () => {
                 this.player.toggle();
 
             });
