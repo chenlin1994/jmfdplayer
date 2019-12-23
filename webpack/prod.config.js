@@ -15,7 +15,7 @@ module.exports = {
 
     entry: {
         // 'jmfDplayer': './src/js/index.js'
-        'Dplayer': './src/js/index.js'
+        'DPlayer': './src/js/index.js'
     },
 
     output: {
