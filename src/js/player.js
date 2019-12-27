@@ -637,7 +637,11 @@ class DPlayer {
             this.switchingLine = false;
         });
     }
-    switchQuality (index) {
+    switchQuality (index, canSwitch) {
+        if (!canSwitch && this.options.isLogin && !this.options.isLogin.status) {
+            this.options.isLogin.callback &&  this.options.isLogin.callback();
+            return;
+        }
         index = typeof index === 'string' ? parseInt(index) : index;
         if (this.qualityIndex === index || this.switchingQuality) {
             return;
