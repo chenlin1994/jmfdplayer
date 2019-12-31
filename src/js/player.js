@@ -628,7 +628,7 @@ class DPlayer {
             if (!paused) {
                 this.video.play();
             }
-            this.notice(`${this.tran('Switched to')} ${line_name}`);
+            this.switchingQuality && this.notice(`${this.tran('Switched to')} ${line_name}`);
             this.switchingLine = false;
             this.events.trigger('line_end');
         });
@@ -688,7 +688,7 @@ class DPlayer {
             if (!paused) {
                 this.video.play();
             }
-            this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
+            this.switchingQuality && this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
             this.switchingQuality = false;
             this.events.trigger('quality_end');
         });
