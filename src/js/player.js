@@ -176,15 +176,17 @@ class DPlayer {
     /**
      * Play video
      */
-    play () {
+    play (chasingFrame) {
         this.paused = false;
         if (this.video.paused) {
             this.bezel.switch(this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
         }
 
         this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_pause || Icons.pause;
-
-        const playedPromise = Promise.resolve(this.video.play());
+        let playedPromise = null;
+        playedPromise = chasingFrame ? Promise.resolve(this.reload()) : Promise.resolve(this.video.play());
+        // const playedPromise = Promise.resolve(this.video.play());
+        // const playedPromise = Promise.resolve(this.video.reload());
         playedPromise.catch(() => {
             this.pause();
         }).then(() => {
@@ -277,7 +279,7 @@ class DPlayer {
      */
     toggle () {
         if (this.video.paused) {
-            this.play();
+            this.play(this.options.chasingFrame);
         }
         else {
             this.pause();
