@@ -279,7 +279,7 @@ class DPlayer {
      */
     toggle () {
         if (this.video.paused) {
-            this.play(this.options.chasingFrame);
+            this.play(this.options.chasingNeedle);
         }
         else {
             this.pause();
@@ -630,7 +630,7 @@ class DPlayer {
             if (!paused) {
                 this.video.play();
             }
-            this.switchingQuality && this.notice(`${this.tran('Switched to')} ${line_name}`);
+            this.switchingLine && this.notice(`${this.tran('Switched to')} ${line_name}`);
             this.switchingLine = false;
             this.events.trigger('line_end');
         });
