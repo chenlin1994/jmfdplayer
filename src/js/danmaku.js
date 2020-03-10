@@ -216,7 +216,6 @@ class Danmaku {
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);
                 });
-
                 const itemWidth = this._measure(dan[i].text);
                 let tunnel;
 
@@ -336,8 +335,7 @@ class Danmaku {
                 item.addEventListener('animationend', () => {
                     this.container.removeChild(item);
                 });
-
-                const itemWidth = this._measure(dan[i].text);
+                const itemWidth = this._measure(dan[i].text.replace(/<[^<>]+>/g, ''), (dan[i].text.length - dan[i].text.replace(/img/g, '').length) / 3);
                 let tunnel;
 
                 // adjust
@@ -389,14 +387,14 @@ class Danmaku {
         this.paused = true;
     }
 
-    _measure (text) {
+    _measure (text, img) {
         if (!this.context) {
             const measureStyle = getComputedStyle(this.container.getElementsByClassName('dplayer-danmaku-item')[0], null);
             this.context = document.createElement('canvas').getContext('2d');
             this.context.font = measureStyle.getPropertyValue('font');
             this.context.font = measureStyle.getPropertyValue('font-size') + ' ' + measureStyle.getPropertyValue('font-family');
         }
-        return this.context.measureText(text).width;
+        return this.context.measureText(text).width + 19 * img;
     }
     updateFont () {
         const measureStyle = getComputedStyle(this.container.getElementsByClassName('dplayer-danmaku-item')[0], null);

@@ -49,8 +49,9 @@ function initPlayers () {
         container: document.getElementById('dplayer1'),
         autoplay: true,
         screenshot: true,
-        live: false,
-
+        live: true,
+        volume:0.5,
+        danmaku: false,
         buttons:{
             playButton:{
 
@@ -72,227 +73,269 @@ function initPlayers () {
             },
             webFullScreen:{}
         },
-        video: {
-            // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
-            // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
-            // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
-            url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
-            // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
-            // type:'hls'
-        }
+        video:JSON.parse('{"quality":[{"name":"标清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100035","number":0},{"name":"高清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100035&line=0","number":1},{"name":"超清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100035","number":2}],"defaultQuality":1,"defaultLine":0,"hoverCssClass":"","line":[{"line_name":"主线路","default_status":1,"line_id":0},{"line_name":"备用线路1","default_status":0,"line_id":1},{"line_name":"备用线路2","default_status":0,"line_id":2}],"type":"auto","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100035&line=0"}')
+        // video: {
+        //     // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
+        //     // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
+        //     // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
+        //     // url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
+        //     url:'http://txplay.qiuhui.com/live/100035_hhd.flv'
+        //     // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
+        //     // type:'hls'
+        // }
     };
     const options1 = {
         container: document.getElementById('dplayer1'),
-        screenshot: true,
-        live: true,
+        autoplay: false,
+        live: false,
         theme: '#FADFA3',
         loop: false,
         lang: 'zh-cn',
+        screenshot: true,
         hotkey: true,
-        preload: 'auto',
+        // preload: 'auto',
         volume: 0.7,
         mutex: true,
-        unlimited:true,
-        dblclick:true,
-        contextmenu:[
-            {
-                text:'haha',
-                click:function () {alert(1);}
-            }, {
-                text:'www.baidu.com',
-                link:'http://www.baidu.com'
-            }
-        ],
-        buttons:{
-            playButton:{// 播放 暂停
-                icon_pause:'',  // 暂停图标
-                icon_play:'',   // 播放图标
-                // callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
-                //     console.log('========play=========');
-                //     console.log(obj);
-                // }
-            },
-            volumeButton:{  // 声音
-                volumeUp:'',
-                volumeDown:'',
-                volumeOff:''
-            },
-            fullScreen:{  // 全屏
-                icon:'',
-                // callback: (obj) => {
-                //     console.log('========fullScreen=============');
-                //     console.log(obj);
-                // }
-            },
-            settingCustomer:{  // 自定义设置
-                icon:''
-            },
-            setting:{
-
-            },
-            comment:{  // 评论
-                icon:'',
-                icon_pallette:'',
-                icon_send:''
-            },
-            screenshot:{  // 截图
-                icon:'',
-                callback: (obj) => {
-                    console.log('========screenshot=============');
-                    console.log(obj);
-                }
-            },
-            subtitle:{  // 字幕
-                icon:'',
-                // callback: (obj) => {
-                //     console.log('========subtitle=============');
-                //     console.log(obj);
-                // }
-            },
-            webFullScreen:{  // 网页全屏
-                icon:'',
-                callback:(obj) => {
-                    console.log('========webFullScreen=============');
-                    console.log(obj);
-                }
-            },
-            timePanel:{
-
-            }
+        unlimited: true,
+        // 暂停之后重新加载
+        chasingNeedle:true,
+        buttons: {
+            playButton: {},
+            volumeButton: {},
+            settingCustomer: {},
+            screenshot: {},
+            fullScreen: {}
         },
-        video:{
-            quality:[
-                // {
-                //     name: '标清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100109'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100109'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'flv',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100109'
-                // }
-
-
-                // {
-                //     name: '标清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=1&room_id=100109'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=2&room_id=100109'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=100109'
-                // }
-
-
+        video: {
+            quality: [
                 {
                     name: '标清',
                     type: 'flv',
-                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100012'
+                    url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=279d5ba428e0f3edfbc6ea91cfe3e7b7&txTime=5e605190'
                 },
                 {
                     name: '高清',
                     type: 'flv',
-                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100012'
+                    url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=279d5ba428e0f3edfbc6ea91cfe3e7b7&txTime=5e605190'
                 },
                 {
                     name: '超清',
                     type: 'flv',
-                    url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100012'
+                    url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=279d5ba428e0f3edfbc6ea91cfe3e7b7&txTime=5e605190'
                 }
-
-                // {
-                //     name: '高清',
-                //     type: 'hls',
-                //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
-                // },
-                // {
-                //     name: '高清',
-                //     type: 'hls',
-                //     url: 'https://tcplay.qiuhui.com/live/100012_hd.m3u8'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'hls',
-                //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
-                // }
-
-
-                // {
-                //     name:'标清',
-                //     type:'hls',
-                //     url:'http://txplay.qiuhui.com/live/100144_hd.m3u8'
-                // }
             ],
-            defaultQuality:0,
-            defaultLine:0,
-            line:[
-                {
-                    line_name:'主线路',
-                    line_id:0
-                }, {
-                    line_name:'备用线路2',
-                    line_id:2
-                }, {
-                    line_name:'备用线路1',
-                    line_id:1
-                }
-            ]
+            defaultQuality: 0,
+            // defaultLine: 0,
+            // hoverCssClass: '',
+            // line: []
         },
-        danmaku: {
-            bottom:'20px',
-            top:'20px'
+        isLogin:{
+            status:false,
+            callback:() => {this.G_SetLogin(true); }
+        },
+        danmaku: false
+        // screenshot: true,
+        // live: true,
+        // theme: '#FADFA3',
+        // loop: false,
+        // lang: 'zh-cn',
+        // hotkey: true,
+        // preload: 'auto',
+        // volume: 0.7,
+        // mutex: true,
+        // unlimited:true,
+        // dblclick:true,
+        // autoplay:true,
+        // buttons:{
+        //     playButton:{// 播放 暂停
+        //         icon_pause:'',  // 暂停图标
+        //         icon_play:'',   // 播放图标
+        //         // callback: (obj) => {  // 点击回调函数 obj为Dplayer对象
+        //         //     console.log('========play=========');
+        //         //     console.log(obj);
+        //         // }
+        //     },
+        //     volumeButton:{  // 声音
+        //         volumeUp:'',
+        //         volumeDown:'',
+        //         volumeOff:''
+        //     },
+        //     fullScreen:{  // 全屏
+        //         icon:'',
+        //         // callback: (obj) => {
+        //         //     console.log('========fullScreen=============');
+        //         //     console.log(obj);
+        //         // }
+        //     },
+        //     // settingCustomer:{  // 自定义设置
+        //     //     icon:''
+        //     // },
+        //     // setting:{
 
-        },
-        contextmenu:[
-            {
-                text:'haha',
-                click:() => {
-                    console.log(this);
-                }
-            },
-            {
-                text:'haha',
-                link:'http://www.baidu.com'
-            },
-            {
-                text:'haha',
-                link:'http://www.baidu.com'
-            },
-            {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }, {
-                text:'haha',
-                link:'http://www.baidu.com'
-            }
-        ]
+        //     // },
+        //     // comment:{  // 评论
+        //     //     icon:'',
+        //     //     icon_pallette:'',
+        //     //     icon_send:''
+        //     // },
+        //     // screenshot:{  // 截图
+        //     //     icon:'',
+        //     //     callback: (obj) => {
+        //     //         console.log('========screenshot=============');
+        //     //         console.log(obj);
+        //     //     }
+        //     // },
+        //     subtitle:{  // 字幕
+        //         icon:'',
+        //         // callback: (obj) => {
+        //         //     console.log('========subtitle=============');
+        //         //     console.log(obj);
+        //         // }
+        //     },
+        //     webFullScreen:{  // 网页全屏
+        //         icon:'',
+        //         callback:(obj) => {
+        //             console.log('========webFullScreen=============');
+        //             console.log(obj);
+        //         }
+        //     },
+        //     timePanel:{
+
+        //     }
+        // },
+        // video:{
+        //     quality:[
+        //         // {
+        //         //     name: '标清',
+        //         //     type: 'flv',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=1&room_id=100109'
+        //         // },
+        //         // {
+        //         //     name: '高清',
+        //         //     type: 'flv',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=2&room_id=100109'
+        //         // },
+        //         // {
+        //         //     name: '超清',
+        //         //     type: 'flv',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100109'
+        //         // }
+
+
+        //         // {
+        //         //     name: '标清',
+        //         //     type: 'hls',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=1&room_id=100109'
+        //         // },
+        //         // {
+        //         //     name: '高清',
+        //         //     type: 'hls',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=2&room_id=100109'
+        //         // },
+        //         // {
+        //         //     name: '超清',
+        //         //     type: 'hls',
+        //         //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=100109'
+        //         // }
+
+
+        //         {
+        //             name: '标清',
+        //             type: 'flv',
+        //             url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=d82d4cef652b6b40a3451efd878ba6e1&txTime=5e604eb0'
+        //         },
+        //         {
+        //             name: '高清',
+        //             type: 'flv',
+        //             url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=d82d4cef652b6b40a3451efd878ba6e1&txTime=5e604eb0'
+        //         },
+        //         {
+        //             name: '超清',
+        //             type: 'flv',
+        //             url: 'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=3&transcod=3&room_id=100012'
+        //         }
+
+        //         // {
+        //         //     name: '高清',
+        //         //     type: 'hls',
+        //         //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+        //         // },
+        //         // {
+        //         //     name: '高清',
+        //         //     type: 'hls',
+        //         //     url: 'https://tcplay.qiuhui.com/live/100012_hd.m3u8'
+        //         // },
+        //         // {
+        //         //     name: '超清',
+        //         //     type: 'hls',
+        //         //     url: 'https://tcplay.qiuhui.com/live/100012_ld.m3u8'
+        //         // }
+
+
+        //         // {
+        //         //     name:'标清',
+        //         //     type:'hls',
+        //         //     url:'http://txplay.qiuhui.com/live/100144_hd.m3u8'
+        //         // }
+        //     ],
+        //     defaultQuality:0,
+        //     defaultLine:0,
+        //     line:[
+        //         {
+        //             line_name:'主线路',
+        //             line_id:0
+        //         }, {
+        //             line_name:'备用线路2',
+        //             line_id:2
+        //         }, {
+        //             line_name:'备用线路1',
+        //             line_id:1
+        //         }
+        //     ]
+        // },
+        // danmaku: {
+        //     bottom:'20px',
+        //     top:'20px'
+
+        // },
+        // contextmenu:[
+        //     {
+        //         text:'haha',
+        //         click:() => {
+        //             console.log(this);
+        //         }
+        //     },
+        //     {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     },
+        //     {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     },
+        //     {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }, {
+        //         text:'haha',
+        //         link:'http://www.baidu.com'
+        //     }
+        // ]
 
     };
     // dp1
