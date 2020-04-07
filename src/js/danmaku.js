@@ -5,7 +5,7 @@ class Danmaku {
         this.options = options;
         this.container = this.options.container;
         this.half = false;
-        this.speedRecord = 5;
+        this.speedRecord = 5;  // 弹幕持续多少秒
         this.danTunnel = {
             right: {},
             top: {},
@@ -164,117 +164,24 @@ class Danmaku {
      * color - danmaku color, default: `#fff`
      * type - danmaku type, `right` `top` `bottom`, default: `right`
      */
-    draw1 (dan) {
-        if (this.showing) {
-            const itemHeight = this.options.height;  // 每条弹幕的高度
-            const danWidth = this.container.offsetWidth;  // 弹幕宽度
-            const danHeight = this.half ? this.container.offsetHeight / 2 : this.container.offsetHeight;  // 弹幕高度
-            const itemY = parseInt(danHeight / itemHeight);  // 每列可以显示的弹幕的条数
-            const getTunnel = (ele, type) => {
-                let pushIndex = 0;
-                for (let i = 0; this.unlimited || i < itemY; i++) {
-                    const item = this.danTunnel[type][i + ''];
-                    if (item && item.length) {
-                        if (item.length < (this.danTunnel[type][pushIndex + ''] ? this.danTunnel[type][pushIndex + ''].length : 0)) {
-                            pushIndex = i;
-                        }
-                        if (i === itemY - 1) {
-                            this.danTunnel[type][pushIndex + ''].push(ele);
-                            return pushIndex;
-                        }
-                    }
-                    else {
-                        this.danTunnel[type][i + ''] = [ele];
-                        ele.addEventListener('animationend', () => {
-                            this.danTunnel[type][i + ''].splice(0, 1);
-                        });
-                        return i % itemY;
-                    }
-                }
-            };
-
-            if (Object.prototype.toString.call(dan) !== '[object Array]') {
-                dan = [dan];
-            }
-
-            const docFragment = document.createDocumentFragment();
-            for (let i = 0; i < dan.length; i++) {
-                if (!dan[i].color) {
-                    dan[i].color = 16777215;
-                }
-                const item = document.createElement('div');
-                item.classList.add('dplayer-danmaku-item');
-                item.classList.add(`dplayer-danmaku-${dan[i].type}`);
-                if (dan[i].border) {
-                    item.innerHTML = `<span style="border:${dan[i].border}">${dan[i].text}</span>`;
-                }
-                else {
-                    item.innerHTML = dan[i].text;
-                }
-                item.style.opacity = this._opacity;
-                item.style.color = utils.number2Color(dan[i].color);
-                item.addEventListener('animationend', () => {
-                    this.container.removeChild(item);
-                });
-                const itemWidth = this._measure(dan[i].text);
-                let tunnel;
-
-                // adjust
-                switch (dan[i].type) {
-                case 'right':
-                    tunnel = getTunnel(item, dan[i].type, itemWidth);
-                    if (tunnel >= 0) {
-                        item.style.top = Math.abs(itemHeight * tunnel) + 'px';
-                        item.style.transform = `translate3d(-${danWidth}px,0,0)`;
-                    }
-                    break;
-                case 'top':
-                    tunnel = getTunnel(item, dan[i].type);
-                    if (tunnel >= 0) {
-                        item.style.top = itemHeight * tunnel + 'px';
-                    }
-                    break;
-                case 'bottom':
-                    tunnel = getTunnel(item, dan[i].type);
-                    if (tunnel >= 0) {
-                        item.style.bottom = itemHeight * tunnel + 'px';
-                    }
-                    break;
-                default:
-                    console.error(`Can't handled danmaku type: ${dan[i].type}`);
-                }
-
-                if (tunnel >= 0) {
-                // move
-                    item.style['animation-duration'] = this.speedRecord + 's';
-                    item.classList.add('dplayer-danmaku-move');
-                    // insert
-                    docFragment.appendChild(item);
-                }
-            }
-            this.container.appendChild(docFragment);
-
-            return docFragment;
-        }
-    }
 
     draw (dan) {
         if (this.showing) {
-            const itemHeight = this.options.height;
-            const danWidth = this.container.offsetWidth;
-            const danHeight = this.half ? this.container.offsetHeight / 2 : this.container.offsetHeight;
-            const itemY = parseInt(danHeight / itemHeight);
+            const itemHeight = this.options.height;  // 每条弹幕的高度（配置写死）
+            const danWidth = this.container.offsetWidth; // 弹幕的显示区域宽度
+            const danHeight = this.half ? this.container.offsetHeight / 2 : this.container.offsetHeight; // 弹幕的显示区域高度
+            const itemY = parseInt(danHeight / itemHeight);   // 弹幕的行数（即每列弹幕可显示条数）
 
-            const danItemRight = (ele) => {
+            const danItemRight = (ele) => { // 该条弹幕距离弹幕显示区域右边（开始）的距离
                 const eleWidth = ele.offsetWidth || parseInt(ele.style.width);
                 const eleRight = ele.getBoundingClientRect().right || this.container.getBoundingClientRect().right + eleWidth;
                 return this.container.getBoundingClientRect().right - eleRight;
             };
-            const danSpeed = (width) => (danWidth + width) / this.speedRecord;
+            const danSpeed = (width) => (danWidth + width) / this.speedRecord;  // 弹幕速度
 
             const getTunnel = (ele, type, width, isMyself) => {
                 const tmp = danWidth / danSpeed(width);
-                for (let i = 0; this.unlimited || i < itemY; i++) {
+                for (let i = 0; this.unlimited || i < itemY; i++) {  // i表示弹幕的行数
                     const item = this.danTunnel[type][i + ''];
                     if (item && item.length) {
                         if (type !== 'right') {
@@ -346,6 +253,7 @@ class Danmaku {
                         item.style.width = itemWidth + 1 + 'px';
                         item.style.top = itemHeight * tunnel + 'px';
                         item.style.transform = `translate3d(-${danWidth}px,0,0)`;
+                        item.style.animationDuration = `${this.speedRecord}s`;
                     }
                     break;
                 case 'top':

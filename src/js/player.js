@@ -176,7 +176,7 @@ class DPlayer {
     /**
      * Play video
      */
-    play (chasingFrame) {
+    play (chasingFrame, noLoading) {
         this.paused = false;
         if (this.video.paused) {
             this.bezel.switch(this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
@@ -191,7 +191,7 @@ class DPlayer {
             this.pause();
         }).then(() => {
         });
-        this.timer.enable('loading');
+        !noLoading && this.timer.enable('loading');
         this.container.classList.remove('dplayer-paused');
         this.container.classList.add('dplayer-playing');
         if (this.danmaku && !this.options.live) {
