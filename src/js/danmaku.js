@@ -254,6 +254,18 @@ class Danmaku {
                         item.style.top = itemHeight * tunnel + 'px';
                         item.style.transform = `translate3d(-${danWidth}px,0,0)`;
                         item.style.animationDuration = `${this.speedRecord}s`;
+                        if (dan[i].hover) {
+                            item.style.pointerEvents = 'auto';
+                            item.classList.add('dplayer-danmaku-hover');
+                        }
+                        if (dan[i].callback) {
+                            item.onclick = function (e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                dan[i].callback(dan[i]);
+                                return;
+                            };
+                        }
                     }
                     break;
                 case 'top':

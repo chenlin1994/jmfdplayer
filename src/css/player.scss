@@ -100,6 +100,11 @@
 
         .dplayer-danmaku .dplayer-danmaku-move {
             animation-play-state: running;
+            &.dplayer-danmaku-hover:hover{
+                animation-play-state: paused;
+                cursor: pointer;
+                z-index:999;
+            }
         }
 
         @media (min-width: 900px) {

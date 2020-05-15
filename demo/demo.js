@@ -73,16 +73,16 @@ function initPlayers () {
             },
             webFullScreen:{}
         },
-        video:JSON.parse('{"quality":[{"name":"标清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=1&room_id=100035","number":0},{"name":"高清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100035&line=0","number":1},{"name":"超清","type":"flv","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=100035","number":2}],"defaultQuality":1,"defaultLine":0,"hoverCssClass":"","line":[{"line_name":"主线路","default_status":1,"line_id":0},{"line_name":"备用线路1","default_status":0,"line_id":1},{"line_name":"备用线路2","default_status":0,"line_id":2}],"type":"auto","url":"https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=2&room_id=100035&line=0"}')
-        // video: {
-        //     // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
-        //     // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
-        //     // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
-        //     // url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
-        //     url:'http://txplay.qiuhui.com/live/100035_hhd.flv'
-        //     // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
-        //     // type:'hls'
-        // }
+        video: {
+            // url:''
+            // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
+            // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
+            // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
+            // url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
+            url:'./out.webm'
+            // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
+            // type:'hls'
+        }
     };
     const options1 = {
         container: document.getElementById('dplayer1'),
