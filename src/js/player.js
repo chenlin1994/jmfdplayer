@@ -15,6 +15,7 @@ import Bezel from './bezel';
 import Controller from './controller';
 import Setting from './setting';
 import SettingCustomer from './settingCustomer';
+import QualityCustomer from './qualityCustomer';
 import Comment from './comment';
 import HotKey from './hotkey';
 import ContextMenu from './contextmenu';
@@ -122,6 +123,7 @@ class DPlayer {
 
         this.options.buttons.setting && (this.setting = new Setting(this));
         this.options.buttons.settingCustomer && (this.settingCustomer = new SettingCustomer(this));
+        this.options.buttons.qualityCustomer && (this.qualityCustomer = new QualityCustomer(this));
         document.addEventListener('click', () => {
             this.focus = false;
         }, true);
@@ -593,9 +595,9 @@ class DPlayer {
             this.line_id = line_id;
         }
         this.switchingLine = true;
-        this.template.lineButton.innerHTML = line_name;
+        // this.template.lineButton.innerHTML = line_name;
         this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
-        this.template.lineList.querySelectorAll('.dplayer-line-item').forEach((item) => {item.classList.remove('active');});
+        // this.template.lineList.querySelectorAll('.dplayer-line-item').forEach((item) => {item.classList.remove('active');});
         target.classList.add('active');
         const paused = this.video.paused;
         this.video.pause();
@@ -655,8 +657,8 @@ class DPlayer {
         this.quality = this.options.video.quality[index];
         this.quality.url.indexOf('/distribute') === -1 ? '' : this.quality.url = this.quality.url.split('&line')[0] + '&line=' + this.line_id;
         this.template.qualityButton.innerHTML = this.quality.name;
-        this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
-        this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
+        // this.template.qualityList.querySelectorAll('.dplayer-quality-item').forEach((item) => {item.classList.remove('active');});
+        // this.template.qualityList.querySelectorAll('.dplayer-quality-item')[index].classList.add('active');
         const paused = this.video.paused;
         this.video.pause();
         const videoHTML = tplVideo({

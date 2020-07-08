@@ -15,6 +15,8 @@ import camera from '../assets/camera.svg';
 import subtitle from '../assets/subtitle.svg';
 import loading from '../assets/loading.svg';
 import settingCustomer from '../assets/danmu.svg' ;
+import quitFull from '../assets/quit-full.svg';
+import reload from '../assets/reload.svg';
 
 const Icons = {
     play: play,
@@ -33,7 +35,9 @@ const Icons = {
     camera: camera,
     subtitle: subtitle,
     loading: loading,
-    settingCustomer:settingCustomer
+    settingCustomer:settingCustomer,
+    quitFull,
+    reload
 };
 
 export default Icons;

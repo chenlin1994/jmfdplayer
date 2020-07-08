@@ -36,8 +36,8 @@ class Controller {
         this.initThumbnails();
         !this.player.options.live && this.initPlayedBar();
         (this.player.options.buttons.fullScreen ||  this.player.options.buttons.webFullScreen) && this.initFullButton();
-        this.player.options.video.quality && this.initQualityButton();
-        this.player.options.video.line && this.initLineButton();
+        this.player.options.video.quality && !this.player.options.buttons.qualityCustomer && this.initQualityButton();
+        this.player.options.video.line && !this.player.options.buttons.qualityCustomer && this.initLineButton();
         this.player.options.buttons.screenshot && this.initScreenshotButton();
         this.player.options.buttons.subtitle && this.initSubtitleButton();
         this.initHighlights();
@@ -208,7 +208,7 @@ class Controller {
         });
     }
     initVolumeButton () {
-        const vWidth = 35;
+        const vWidth = 90;
 
         const volumeMove = (event) => {
             const e = event || window.event;
@@ -218,7 +218,7 @@ class Controller {
         const volumeUp = () => {
             document.removeEventListener(utils.nameMap.dragEnd, volumeUp);
             document.removeEventListener(utils.nameMap.dragMove, volumeMove);
-            this.player.template.volumeButton.classList.remove('dplayer-volume-active');
+            // this.player.template.volumeButton.classList.remove('dplayer-volume-active');
         };
 
         this.player.template.volumeBarWrapWrap.addEventListener('click', (event) => {

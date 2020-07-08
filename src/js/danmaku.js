@@ -340,7 +340,7 @@ class Danmaku {
             bottom: {}
         };
         this.danIndex = 0;
-        this.options.container.innerHTML = '';
+        this.options.container.innerHTML = '<div class="dplayer-danmaku-item dplayer-danmaku-item--demo"></div>';
 
         this.events && this.events.trigger('danmaku_clear');
     }

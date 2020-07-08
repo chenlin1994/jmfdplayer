@@ -1,3 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 17 32">
-    <path d="M14.080 4.8q2.88 0 2.88 2.048v18.24q0 2.112-2.88 2.112t-2.88-2.112v-18.24q0-2.048 2.88-2.048zM2.88 4.8q2.88 0 2.88 2.048v18.24q0 2.112-2.88 2.112t-2.88-2.112v-18.24q0-2.048 2.88-2.048z"></path>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_suspended</title>
+    <g id="👨🏻‍💻-进行文件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="直播-直播间全屏页" transform="translate(-30.000000, -1045.000000)">
+            <g id="编组-40" transform="translate(0.000000, 960.000000)">
+                <g id="暂停" transform="translate(30.000000, 85.000000)">
+                    <rect id="矩形" x="0" y="0" width="24" height="24"></rect>
+                    <rect id="矩形" fill="#949BB1" x="5.45558643" y="3.5" width="3" height="17" rx="1.5"></rect>
+                    <rect id="矩形备份-23" fill="#949BB1" x="15.5444136" y="3.5" width="3" height="17" rx="1.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

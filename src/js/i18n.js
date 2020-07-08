@@ -59,6 +59,7 @@ const tranTxt = {
         'Volume': '音量',
         'Live': '直播',
         'Video info': '视频统计信息',
+        'Danmaku': '弹幕'
     },
     'zh-tw' : {
         'Danmaku is loading': '彈幕載入中',
@@ -98,6 +99,7 @@ const tranTxt = {
         'Volume': '音量',
         'Live': '直播',
         'Video info': '影片統計訊息',
+        '弹幕':'Danmaku'
     }
 };
 

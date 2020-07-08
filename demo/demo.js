@@ -59,9 +59,7 @@ function initPlayers () {
             volumeButton:{
 
             },
-            setting:{
-
-            },
+            settingCustomer: {},
             screenshot:{
 
             },
@@ -71,17 +69,33 @@ function initPlayers () {
             timePanel:{
 
             },
-            webFullScreen:{}
+            webFullScreen:{},
+            qualityCustomer:{}
         },
         video: {
-            // url:''
-            // url:'https://tcplay.qiuhui.com/live/57755_0a61ce8d9d0d1ba93e5fe78225ccb08a_hd.flv',
-            // url:'https://ks.play.sit.qiuhui.com/live/55963_21a1330cf3d58be4bba63f09a13c4217_hd.flv',
-            // url:'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8',
-            // url:'https://video.qiuhui.com/assets/20191111/video/51f0e2a8-a70b-412f-98b3-7e57f7dc6056.mp4',
-            url:'./out.webm'
-            // thumbnails:'https://static.qiuhui.com/avatar/0513036d-7b3b-40c4-9db7-0933d5175a5f.png'
-            // type:'hls'
+            quality: [
+                {
+                    name: '标清',
+                    type: 'flv',
+                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
+                },
+                {
+                    name: '高清',
+                    type: 'flv',
+                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
+                },
+                {
+                    name: '超清',
+                    type: 'flv',
+                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
+                }
+            ],
+            defaultQuality: 0,
+            defaultLine: 0,
+            line:[
+                {default_status:1, line_id:0, line_name:'主线路', need_login:0},
+                {default_status:0, line_id:1, line_name:'备用线路1', need_login:0}
+            ]
         }
     };
     const options1 = {

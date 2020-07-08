@@ -1,5 +1,5 @@
 import utils from './utils';
-
+import Icons from './icons';
 class FullScreen {
     constructor (player) {
         this.player = player;
@@ -64,6 +64,8 @@ class FullScreen {
 
         switch (type) {
         case 'browser':
+            console.log(this.player.container);
+            this.player.template.browserFullButton.querySelector('.dplayer-icon-content').innerHTML = Icons.quitFull;
             if (this.player.container.requestFullscreen) {
                 this.player.container.requestFullscreen();
             }
@@ -98,6 +100,7 @@ class FullScreen {
     cancel (type = 'browser') {
         switch (type) {
         case 'browser':
+            this.player.template.browserFullButton.querySelector('.dplayer-icon-content').innerHTML = Icons.full;
             if (document.cancelFullScreen) {
                 document.cancelFullScreen();
             }

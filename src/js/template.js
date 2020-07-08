@@ -55,6 +55,11 @@ class Template {
         this.customerSettingBox = this.container.querySelector('.customer-setting-box');
         this.customerSettingArea = this.container.querySelector('.customer-setting-area');
         this.customerSettingDanmaku = this.container.querySelector('.danmaku-font');
+        this.customerQualityButton = this.container.querySelector('.dplayer-quality-icon-customer');
+        this.customerQualityBox = this.container.querySelector('.dplayer-quality-customer-box');
+        this.customerLineSelect = this.container.querySelector('.line-customer-select');
+        this.customerQualitySelect = this.container.querySelector('.quality-customer-quality-box');
+        this.customerQualityCurrent = this.container.querySelector('.now-show');
         this.mask = this.container.querySelector('.dplayer-mask');
         this.loop = this.container.querySelector('.dplayer-setting-loop');
         this.loopToggle = this.container.querySelector('.dplayer-setting-loop .dplayer-toggle-setting-input');

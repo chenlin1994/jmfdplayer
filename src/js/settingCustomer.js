@@ -76,22 +76,22 @@ class SettingCustomer {
     move (dom1, dom2, dom3, dom4) {
         dom1.addEventListener('click', (e) => {
             if (e.target !== dom2) {
-                if (e.offsetX > 132) {
-                    dom2.style.left = '128px';
-                    dom3.style.width = '128px';
-                    dom4.style.left = '128px';
+                if (e.offsetX > 114) {
+                    dom2.style.left = '110px';
+                    dom3.style.width = '110px';
+                    // dom4.style.left = '110px';
                 } else if (e.offsetX < 4) {
                     dom2.style.left = '0px';
                     dom3.style.width = '0px';
-                    dom4.style.left = '0px';
+                    // dom4.style.left = '0px';
                 } else {
                     dom2.style.left = e.offsetX - 4 + 'px';
                     dom3.style.width = e.offsetX - 4 + 'px';
-                    dom4.style.left =  e.offsetX - 4 + 'px';
+                    // dom4.style.left =  e.offsetX - 4 + 'px';
                 }
-                const percent = Math.floor(dom3.offsetWidth * 100 / 128) + '%';
+                const percent = Math.floor(dom3.offsetWidth * 100 / 110) + '%';
                 dom4.innerHTML = percent;
-                this.settingOpacity(dom3.offsetWidth / 128);
+                this.settingOpacity(dom3.offsetWidth / 110);
             }
         });
         dom2.addEventListener('mousedown', (e) => {
@@ -102,19 +102,19 @@ class SettingCustomer {
                 if (width + currentD <= 0) {
                     dom2.style.left = 0 + 'px';
                     dom3.style.width = 0 + 'px';
-                    dom4.style.left = 0 + 'px';
-                } else if (width + currentD >= 132) {
-                    dom2.style.left = 128 + 'px';
-                    dom3.style.width = 128 + 'px';
-                    dom4.style.left = 128 + 'px';
+                    // dom4.style.left = 0 + 'px';
+                } else if (width + currentD >= 114) {
+                    dom2.style.left = 110 + 'px';
+                    dom3.style.width = 110 + 'px';
+                    // dom4.style.left = 110 + 'px';
                 } else {
                     dom2.style.left = width + currentD + 'px';
                     dom3.style.width = width + currentD + 'px';
-                    dom4.style.left = width + currentD + 'px';
+                    // dom4.style.left = width + currentD + 'px';
                 }
-                const percent = Math.floor(dom3.offsetWidth * 100 / 128) + '%';
+                const percent = Math.floor(dom3.offsetWidth * 100 / 110) + '%';
                 dom4.innerHTML = percent;
-                this.settingOpacity(dom3.offsetWidth  / 128);
+                this.settingOpacity(dom3.offsetWidth  / 110);
             };
         });
         document.addEventListener('mouseup', function () {
