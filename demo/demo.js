@@ -56,21 +56,23 @@ function initPlayers () {
             playButton:{
 
             },
-            volumeButton:{
+            // volumeButton:{
 
-            },
-            settingCustomer: {},
-            screenshot:{
+            // },
+            // settingCustomer: {},
+            // screenshot:{
 
-            },
+            // },
+            setting:{},
             fullScreen:{
 
             },
             timePanel:{
 
             },
-            webFullScreen:{},
-            qualityCustomer:{}
+
+            // webFullScreen:{},
+            // qualityCustomer:{}
         },
         video: {
             quality: [
@@ -118,7 +120,8 @@ function initPlayers () {
             volumeButton: {},
             settingCustomer: {},
             screenshot: {},
-            fullScreen: {}
+            fullScreen: {},
+            setting:{}
         },
         video: {
             quality: [

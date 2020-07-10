@@ -318,6 +318,7 @@
             text-shadow: 0 0 2px rgba(0, 0, 0, .5);
             vertical-align: middle;
             font-size: 13px;
+            vertical-align: super;
             cursor: default;
         }
         .dplayer-live-dot {
@@ -485,8 +486,8 @@
                     }
                     .line-customer-select{
                         list-style: none;
-                        width:75px;
-                        background:rgba(0,0,0,1);
+                        width:80px;
+                        background:rgba(0,0,0,0.8);
                         border-radius:2px;
                         border:1px solid rgba(255,255,255,0.3);
                         color:#D3D8E4;
@@ -596,6 +597,9 @@
                             color:#DFA868;
                             .iconfont{
                                 color:#DFA868
+                            }
+                            .area_choice{
+                                color: #DFA868;
                             }
                         }
                         &:hover{
@@ -730,14 +734,15 @@
         .dplayer-setting {
             display: inline-block;
             height: 100%;
+            position: relative;
             .dplayer-setting-box {
                 position: absolute;
-                right: 0;
+                left:50%;
                 bottom: 50px;
-                transform: scale(0);
+                transform: translate(-50%,0) scale(0);
                 width: 150px;
                 border-radius: 2px;
-                background: rgba(28, 28, 28, 0.9);
+                background: rgba(0,0,0,0.8);
                 padding: 7px 0;
                 transition: all .3s ease-in-out;
                 overflow: hidden;
@@ -749,7 +754,7 @@
                     }
                 }
                 &.dplayer-setting-box-open {
-                    transform: scale(1);
+                    transform: translate(-50%,0) scale(1);
                 }
                 &.dplayer-setting-box-narrow {
                     width: 70px;
@@ -876,18 +881,18 @@
                 bottom:38px;
                 left:-18px;
                 width:80px;
-                padding-bottom:12px;
+                // padding-bottom:12px;
             }
             .dplayer-line-list {
                 display: none;
                 font-size: 12px;
                 width: 80px;
                 border-radius: 2px;
-                background: rgba(28, 28, 28, 0.9);
+                background: rgba(0,0,0,0.8);
                 padding: 5px 0;
                 transition: all .3s ease-in-out;
                 overflow: hidden;
-                color: #fff;
+                color: #D3D8E4;
                 text-align: center;
             }
             .dplayer-line-item {
@@ -896,11 +901,11 @@
                 cursor: pointer;
                 line-height: 25px;
                 &:hover {
-                    background-color: rgba(255, 255, 255, .1);
-                    color:#0D8CFF
+                    // background-color: rgba(255, 255, 255, .1);
+                    color:#DFA868
                 }
                 &.active {
-                    color :#0D8CFF
+                    color :#DFA868
                 }
             }
         }
@@ -926,18 +931,18 @@
                 bottom: 38px;
                 left: -18px;
                 width: 80px;
-                padding-bottom: 12px;
+                // padding-bottom: 12px;
             }
             .dplayer-quality-list {
                 display: none;
                 font-size: 12px;
                 width: 80px;
                 border-radius: 2px;
-                background: rgba(28, 28, 28, 0.9);
+                background: rgba(0,0,0,0.8);
                 padding: 5px 0;
                 transition: all .3s ease-in-out;
                 overflow: hidden;
-                color: #fff;
+                color: #D3D8E4;
                 text-align: center;
             }
             .dplayer-quality-item {
@@ -947,11 +952,11 @@
                 line-height: 25px;
                 
                 &:hover {
-                    background-color: rgba(255, 255, 255, .1);
-                    color:#0D8CFF
+                    // background-color: rgba(255, 255, 255, .1);
+                    color:#DFA868
                 }
                 &.active {
-                    color :#0D8CFF
+                    color :#DFA868
                 }
             }
         }

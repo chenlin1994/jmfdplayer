@@ -123,7 +123,7 @@
             </div>
         </div>
         {{ /if }}
-        {{ if options.buttons.qualityCustomer && options.video.quality.length>0 || options.video.line.length>0 }}
+         {{ if options.buttons.qualityCustomer && ((options.video.quality && options.video.quality.length>0) ||  (options.video.line && options.video.line.length>0)) }}
         <div class="quality-customer">
             <button class="dplayer-icon dplayer-quality-icon dplayer-icon-text dplayer-quality-icon-customer">{{ options.video.quality[options.video.defaultQuality].name}}</button>
             <div class="dplayer-quality-customer-box">
