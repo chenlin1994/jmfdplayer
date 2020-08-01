@@ -387,7 +387,7 @@ class DPlayer {
                               sign
                         }
                         const hls = new Hls();
-                        hls.loadSource(video.src,/m3u8(#|\?|$)/i.exec(video.src)?{}:headers);
+                        hls.loadSource(video.src,/m3u8(#|\?|$)/i.exec(video.src) || !this.options.needHeaders?{}:headers);
                         hls.attachMedia(video);
                         hls.on(Hls.Events.ERROR, (event, data) => {
                             if (data.type === 'networkError') {
@@ -432,7 +432,7 @@ class DPlayer {
                             url: video.src,
                             
                         },{
-                            headers:/.flv(#|\?|$)/i.exec(video.src)?{}:headers
+                            headers:/.flv(#|\?|$)/i.exec(video.src) || !this.options.needHeaders?{}:headers
                         });
                         flvPlayer.attachMediaElement(video);
                         flvPlayer.load();
