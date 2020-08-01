@@ -21,7 +21,7 @@ import HotKey from './hotkey';
 import ContextMenu from './contextmenu';
 import InfoPanel from './info-panel';
 import tplVideo from '../template/video.art';
-
+import md5 from 'crypto-js/md5'
 let index = 0;
 const instances = [];
 class DPlayer {
@@ -174,7 +174,18 @@ class DPlayer {
         this.bar.set('played', time / this.video.duration, 'width');
         this.template.ptime.innerHTML = utils.secondToTime(time);
     }
-
+    getUUID() {
+        let d = Date.now()
+        let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          let r = (d + Math.random() * 16) % 16 | 0
+          d = Math.floor(d / 16)
+          return (
+            c == 'x'
+              ? r
+              : (r & 0x3 | 0x8)).toString(16)
+        })
+        return uuid
+    }
     /**
      * Play video
      */
@@ -367,8 +378,16 @@ class DPlayer {
                 // this.options.mutex && window.hlsObject && window.hlsObject.destroy();
                 if (Hls) {
                     if (Hls.isSupported()) {
+                        let nonce = this.getUUID()
+                        let timestamp = Date.now()
+                        let sign = String(md5(timestamp+nonce))
+                        let headers = {
+                              nonce,
+                              timestamp,
+                              sign
+                        }
                         const hls = new Hls();
-                        hls.loadSource(video.src);
+                        hls.loadSource(video.src,/m3u8(#|\?|$)/i.exec(video.src)?{}:headers);
                         hls.attachMedia(video);
                         hls.on(Hls.Events.ERROR, (event, data) => {
                             if (data.type === 'networkError') {
@@ -400,9 +419,20 @@ class DPlayer {
                 }
                 if (flvjs) {
                     if (flvjs.isSupported()) {
+                        let nonce = this.getUUID()
+                        let timestamp = Date.now()
+                        let sign = String(md5(timestamp+nonce))
+                        let headers = {
+                              nonce,
+                              timestamp,
+                              sign
+                        }
                         const flvPlayer = flvjs.createPlayer({
                             type: 'flv',
-                            url: video.src
+                            url: video.src,
+                            
+                        },{
+                            headers:/.flv(#|\?|$)/i.exec(video.src)?{}:headers
                         });
                         flvPlayer.attachMediaElement(video);
                         flvPlayer.load();

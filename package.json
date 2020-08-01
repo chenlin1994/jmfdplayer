@@ -1,6 +1,6 @@
 {
   "name": "jmfdplayer",
-  "version": "1.25.32 ",
+  "version": "1.25.33",
   "description": "Wow, such a lovely HTML5 danmaku video player",
   "main": "dist/DPlayer.min.js",
   "style": "dist/DPlayer.min.css",
@@ -67,6 +67,7 @@
   "dependencies": {
     "axios": "0.19.0",
     "balloon-css": "^0.5.0",
+    "crypto-js": "^4.0.0",
     "promise-polyfill": "8.1.0"
   }
 }

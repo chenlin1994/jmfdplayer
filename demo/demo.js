@@ -42,8 +42,21 @@ function speed (number) {
 //         document.getElementById('float-dplayer').style.display = 'none';
 //     });
 // }
-
+function getUUID() {
+    let d = Date.now()
+    let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      let r = (d + Math.random() * 16) % 16 | 0
+      d = Math.floor(d / 16)
+      return (
+        c == 'x'
+          ? r
+          : (r & 0x3 | 0x8)).toString(16)
+    })
+    return uuid
+  }
 function initPlayers () {
+    let nonce = this.getUUID()
+    let timestamp = Date.now()
     // dplayer-float
     const options = {
         container: document.getElementById('dplayer1'),
@@ -52,6 +65,11 @@ function initPlayers () {
         live: true,
         volume:0.5,
         danmaku: false,
+        headers:{
+            nonce : nonce,
+            timestamp:timestamp,
+            sign:timestamp + nonce
+        },
         buttons:{
             playButton:{
 
@@ -88,8 +106,8 @@ function initPlayers () {
                 },
                 {
                     name: '超清',
-                    type: 'flv',
-                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
+                    type: 'hls',
+                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=203831&line=0'
                 }
             ],
             defaultQuality: 0,
