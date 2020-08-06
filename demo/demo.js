@@ -74,9 +74,9 @@ function initPlayers () {
             playButton:{
 
             },
-            // volumeButton:{
+            volumeButton:{
 
-            // },
+            },
             // settingCustomer: {},
             // screenshot:{
 

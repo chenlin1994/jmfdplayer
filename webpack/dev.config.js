@@ -95,11 +95,11 @@ module.exports = {
         clientLogLevel: 'none',
         quiet: false,
         open: true,
-        host:'192.168.101.155',
+        host:'192.168.100.51',
         disableHostCheck:true,
         // host:'0.0.0.0',
         // useLocalIp:true,
-        port: 8811,
+        port: 8821,
         historyApiFallback: {
             disableDotRule: true
         },
