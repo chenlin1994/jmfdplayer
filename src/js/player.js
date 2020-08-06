@@ -200,7 +200,7 @@ class DPlayer {
         playedPromise = chasingFrame ? Promise.resolve(this.reload()) : Promise.resolve(this.video.play());
         // const playedPromise = Promise.resolve(this.video.play());
         // const playedPromise = Promise.resolve(this.video.reload());
-        playedPromise.catch((err) => {
+        playedPromise.catch(() => {
             // 如果不允许自动播放则静音之后播放
             this.volume(0)
             this.play()
