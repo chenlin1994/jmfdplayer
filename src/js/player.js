@@ -202,8 +202,10 @@ class DPlayer {
         // const playedPromise = Promise.resolve(this.video.reload());
         playedPromise.catch(() => {
             // 如果不允许自动播放则静音之后播放
-            this.volume(0)
-            this.play()
+            if(this.options.live){
+                this.volume(0)
+                this.play()
+            }
             // this.pause();
         }).then(() => {
         });
