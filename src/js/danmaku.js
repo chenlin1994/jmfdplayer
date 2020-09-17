@@ -194,7 +194,10 @@ class Danmaku {
                             }
                             if (j === item.length - 1) {
                                 this.danTunnel[type][i + ''].push(ele);
-                                ele.addEventListener('animationend', () => {
+                                // ele.addEventListener('animationend', () => {
+                                //     this.danTunnel[type][i + ''].splice(0, 1);
+                                // });
+                                ele.addEventListener('transitionend', () => {
                                     this.danTunnel[type][i + ''].splice(0, 1);
                                 });
                                 return i % itemY;
@@ -203,7 +206,10 @@ class Danmaku {
                     }
                     else {
                         this.danTunnel[type][i + ''] = [ele];
-                        ele.addEventListener('animationend', () => {
+                        // ele.addEventListener('animationend', () => {
+                        //     this.danTunnel[type][i + ''].splice(0, 1);
+                        // });
+                        ele.addEventListener('transitionend', () => {
                             this.danTunnel[type][i + ''].splice(0, 1);
                         });
                         return i % itemY;
@@ -239,9 +245,12 @@ class Danmaku {
                 }
                 item.style.opacity = this._opacity;
                 item.style.color = utils.number2Color(dan[i].color);
-                item.addEventListener('animationend', () => {
+                // item.addEventListener('animationend', () => {
+                //     this.container.removeChild(item);
+                // });
+                item.addEventListener('transitionend',()=>{
                     this.container.removeChild(item);
-                });
+                })
                 const itemWidth = this._measure(dan[i].text.replace(/<[^<>]+>/g, ''), (dan[i].text.length - dan[i].text.replace(/img/g, '').length) / 3);
                 let tunnel;
 
@@ -252,8 +261,13 @@ class Danmaku {
                     if (tunnel >= 0) {
                         item.style.width = itemWidth + 1 + 'px';
                         item.style.top = itemHeight * tunnel + 'px';
-                        item.style.transform = `translate3d(-${danWidth}px,0,0)`;
-                        item.style.animationDuration = `${this.speedRecord}s`;
+                        
+                        // item.style.animationDuration = `${this.speedRecord}s`;
+                        item.style.transition =  `transform ${this.speedRecord}s linear`
+                        setTimeout(()=>{
+                            item.style.transform = `translate3d(-${danWidth}px,0,0)`;
+                        })
+                        
                         if (dan[i].hover) {
                             item.style.pointerEvents = 'auto';
                             item.classList.add('dplayer-danmaku-hover');

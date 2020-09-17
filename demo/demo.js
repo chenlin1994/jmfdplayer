@@ -15,13 +15,17 @@ requestAnimationFrame(animate);
 initPlayers();
 // handleEvent();
 function reload () {
-    window.dp1.reload();
+    // window.dp1.reload();
+    window.dp1.reload({url:'https://liveplay.qiuhui.com/live/175504329.flv',type:'flv'})
 }
 function empty () {
     window.dp1.empty();
 }
 function speed (number) {
     window.dp1.danmaku.speed(number);
+}
+function destroy(){
+    window.dp1.destroy()
 }
 // function handleEvent () {
 //     document.getElementById('dplayer-dialog').addEventListener('click', (e) => {
@@ -65,6 +69,7 @@ function initPlayers () {
         live: true,
         volume:0.5,
         danmaku: false,
+        chasingNeedle:true,
         headers:{
             nonce : nonce,
             timestamp:timestamp,
@@ -96,19 +101,21 @@ function initPlayers () {
             quality: [
                 {
                     name: '标清',
-                    type: 'flv',
-                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
-                },
-                {
-                    name: '高清',
-                    type: 'flv',
-                    url: 'https://liveplay.qiuhui.com/live/100186.flv'
-                },
-                {
-                    name: '超清',
                     type: 'hls',
-                    url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=203831&line=0'
-                }
+                    // url: '/wpdt/live1.m3u8'
+                    url:'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=175504335&line=0'
+                    // url:'https://liveplay.qiuhui.com/live/190628.m3u8'
+                },
+                // {
+                //     name: '高清',
+                //     type: 'flv',
+                //     url: 'https://liveplay.qiuhui.com/live/100186.flv'
+                // },
+                // {
+                //     name: '超清',
+                //     type: 'hls',
+                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=203831&line=0'
+                // }
             ],
             defaultQuality: 0,
             defaultLine: 0,

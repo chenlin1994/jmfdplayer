@@ -196,6 +196,7 @@ class DPlayer {
         }
 
         this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_pause || Icons.pause;
+        this.template.playButton.dataset.balloon = '暂停'
         let playedPromise = null;
         playedPromise = chasingFrame ? Promise.resolve(this.reload()) : Promise.resolve(this.video.play());
         // const playedPromise = Promise.resolve(this.video.play());
@@ -239,7 +240,7 @@ class DPlayer {
             this.bezel.switch(this.options.buttons.playButton &&  this.options.buttons.playButton.icon_pause || Icons.pause);
         }
 
-        this.template.playButton && (this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play);
+        this.template.playButton && (this.template.playButton.innerHTML = this.options.buttons.playButton && this.options.buttons.playButton.icon_play || Icons.play, this.template.playButton.dataset.balloon = '播放');
         this.video.pause();
         this.timer.disable('loading');
         // 弹幕不暂停
@@ -568,11 +569,13 @@ class DPlayer {
         });
 
         this.on('timeupdate', () => {
-            this.bar.set('played', this.video.currentTime / this.video.duration, 'width');
-            const currentTime = utils.secondToTime(this.video.currentTime);
-            if (!this.options.buttons.timePanel) {return;}
-            if (this.template.ptime.innerHTML !== currentTime) {
-                this.template.ptime.innerHTML = currentTime;
+            if( this.video){
+                this.bar.set('played', this.video.currentTime / this.video.duration, 'width');
+                const currentTime = utils.secondToTime(this.video.currentTime);
+                if (!this.options.buttons.timePanel) {return;}
+                if (this.template.ptime.innerHTML !== currentTime) {
+                    this.template.ptime.innerHTML = currentTime;
+                }
             }
         });
 
@@ -591,13 +594,13 @@ class DPlayer {
             }
         }
     }
-    reload () {
+    reload (obj) {
         const videoHTML = tplVideo({
             current:false,
             pic:null,
             screenshot:this.options.buttons.screenshot,
             preload:'auto',
-            url:this.quality ? this.quality.url : this.options.video.url,
+            url:obj?obj.url:(this.quality ? this.quality.url : this.options.video.url),
             subtitle:this.options.subtitle,
             isAndroid:this.isAndroid
         });
@@ -605,7 +608,11 @@ class DPlayer {
         this.template.videoWrap.insertBefore(videoEle, this.template.videoWrap.getElementsByTagName('div')[0]);
         this.prevVideo = this.video;
         this.video = videoEle;
-        this.quality ? this.initVideo(this.video, this.quality.type || this.options.video.type) : this.initVideo(this.video, this.options.video.type);
+        if(obj){
+            this.initVideo(this.video,obj.type)
+        } else {
+            this.quality ? this.initVideo(this.video, this.quality.type || this.options.video.type) : this.initVideo(this.video, this.options.video.type);
+        }
         this.events.trigger('quality_start', this.quality);
         this.events.trigger('reload', this.quality);
         let currentTime = '';
@@ -620,7 +627,6 @@ class DPlayer {
                 !this.options.live && this.seek(currentTime);
             }
             this.video.play();
-
         });
     }
     switchLine (line_id, line_name, target) {
@@ -777,8 +783,11 @@ class DPlayer {
         this.pause();
         this.controller.destroy();
         this.timer.destroy();
-        this.video.src = '';
-        this.container.innerHTML = '';
+        // 重置该参数会导致m3u8销毁失效
+        // this.video.src = '';
+        // this.container.innerHTML = '';
+        this.template.videoWrap.innerHTML = ''
+        this.video = null
         if (this.options.live && this.options.mutex) {
             if (this.playerObj) {
                 this.playerObj.destroy();

@@ -25,11 +25,12 @@
     .dplayer-danmaku-right {
         position: absolute;
         right: 0;
-        transform: translate3d(100%);
+        transform: translate3d(100%,0,0);
         &.dplayer-danmaku-move {
             will-change: transform;
-            animation: danmaku 5s linear;
-            animation-play-state: paused;
+            transform: translate3d(100%,0,0);
+            // animation: danmaku 5s linear;
+            // animation-play-state: paused;
         }
     }
     @keyframes danmaku {

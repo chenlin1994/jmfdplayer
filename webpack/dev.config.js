@@ -95,16 +95,33 @@ module.exports = {
         clientLogLevel: 'none',
         quiet: false,
         open: true,
-        host:'192.168.100.51',
+        host:'localhost',
         disableHostCheck:true,
         // host:'0.0.0.0',
         // useLocalIp:true,
-        port: 8821,
+        port: 8801,
         historyApiFallback: {
             disableDotRule: true
         },
         watchOptions: {
             ignored: /node_modules/
+        },
+        proxy:{
+            '/wpdt':{
+                target:'http://ydl.winpowerdata.com.cn',
+                changeOrigin:true,
+            },
+            '/haha':{
+                target:'http://libs.baidu.com/',
+                changeOrigin:true,
+                pathRewrite: {
+                    '^/haha': '/' 
+               }
+            },
+            '/live':{
+                target:'https://liveplay.qiuhui.com',
+                changeOrigin:true
+            }
         }
     },
 

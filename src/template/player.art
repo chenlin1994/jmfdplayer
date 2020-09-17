@@ -75,7 +75,7 @@
     </div>
     <div class="dplayer-icons dplayer-icons-left">
         {{ if options.buttons.playButton }}
-        <button class="dplayer-icon dplayer-play-icon">
+        <button class="dplayer-icon dplayer-play-icon" data-balloon="{{ tran('Send danmaku')}}">
            <span class="dplayer-icon-content">{{@ options.buttons.playButton.icon_play || icons.play }}</span>
         </button>
         {{ /if }}
@@ -332,7 +332,7 @@
         {{ /if }}
         {{ if (options.buttons.volumeButton && !isMobile) }}
         <div class="dplayer-volume">
-            <button class="dplayer-icon dplayer-volume-icon">
+            <button class="dplayer-icon dplayer-volume-icon" data-balloon="{{ tran('Volume')}}">
                 <span class="dplayer-icon-content">
                    {{@ (options.buttons.volumeButton && options.buttons.volumeButton.volumeUp) ||  icons.volumeUp }}
                 </span>
