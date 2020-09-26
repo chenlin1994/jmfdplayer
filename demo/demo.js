@@ -68,7 +68,7 @@ function initPlayers () {
         screenshot: true,
         live: true,
         volume:0.5,
-        danmaku: false,
+        danmaku: true,
         chasingNeedle:true,
         headers:{
             nonce : nonce,
@@ -153,7 +153,7 @@ function initPlayers () {
                 {
                     name: '标清',
                     type: 'flv',
-                    url: 'http://scoreplay.qiugood.com/live/stream681322.flv?txSecret=279d5ba428e0f3edfbc6ea91cfe3e7b7&txTime=5e605190'
+                    url: 'https://scoreplay.qiugood.com/live/sd-1-3409749.flv?txSecret=65d5fc697275fa3cee0045b903a72c04&txTime=5f6f2f21'
                 },
                 {
                     name: '高清',
@@ -175,7 +175,7 @@ function initPlayers () {
             status:false,
             callback:() => {this.G_SetLogin(true); }
         },
-        danmaku: false
+        danmaku: true
         // screenshot: true,
         // live: true,
         // theme: '#FADFA3',
@@ -382,6 +382,15 @@ function initPlayers () {
     };
     // dp1
     window.dp1 = new DPlayer(options);
+    setInterval(()=>{
+      window.dp1.danmaku.draw({
+     text: '随机弹幕',
+     color: 'red',
+     type: 'right',
+     opacity: 1
+   })
+   window.dp1.danmaku.opacity(1)
+   }, 3000)
 }
 // window.dp1.on('sendComment', (message) => { // message 为弹幕信息(颜色，文字，内容)
 //     console.log('============sendComment=============');
