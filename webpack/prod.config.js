@@ -20,7 +20,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: 'd-player.min.js',
+        filename: 'DPlayer.min.js',
         library: '[name]',
         libraryTarget: 'umd',
         libraryExport: 'default',
