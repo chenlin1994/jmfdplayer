@@ -24,7 +24,7 @@
     }
     .dplayer-danmaku-right {
         position: absolute;
-        right: 0;
+        right: 2px;
         transform: translate3d(100%);
         &.dplayer-danmaku-move {
             will-change: transform;

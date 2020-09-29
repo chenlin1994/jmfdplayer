@@ -101,9 +101,9 @@ function initPlayers () {
             quality: [
                 {
                     name: '标清',
-                    type: 'hls',
+                    type: 'flv',
                     // url: '/wpdt/live1.m3u8'
-                    url:'https://gw.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=2&agreement=3&transcod=3&room_id=175504335&line=0'
+                    url:'https://liveplay.qiuhui.com/live/190641.flv'
                     // url:'https://liveplay.qiuhui.com/live/190628.m3u8'
                 },
                 // {
@@ -384,7 +384,7 @@ function initPlayers () {
     window.dp1 = new DPlayer(options);
     setInterval(()=>{
       window.dp1.danmaku.draw({
-     text: '随机弹幕',
+     text: `随机弹幕${Math.ceil(1000000*Math.random()*Math.random())}`,
      color: 'red',
      type: 'right',
      opacity: 1
