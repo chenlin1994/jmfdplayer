@@ -33,6 +33,7 @@ class DPlayer {
      * @constructor
      */
     constructor (options) {
+        this.failCount = 0;
         this.options = handleOption(options);
         this.suspension = false;
         if (this.options.video.quality) {
@@ -201,15 +202,22 @@ class DPlayer {
         playedPromise = chasingFrame ? Promise.resolve(this.reload()) : Promise.resolve(this.video.play());
         // const playedPromise = Promise.resolve(this.video.play());
         // const playedPromise = Promise.resolve(this.video.reload());
-        playedPromise.catch(() => {
+        playedPromise.then(() => {
+          this.failCount = 0
+        }).catch(() => {
             // 如果不允许自动播放则静音之后播放
-            if(this.options.live){
-                this.volume(0)
-                this.play()
+            if(this.options.live && this.failCount <= 3){
+              this.failCount += 1
+              console.log('this.failCount', this.failCount)
+                setTimeout(()=>{
+                  this.volume(0)
+                  this.play()
+                }, 500)
+            } else {
+              this.pause();
             }
             // this.pause();
-        }).then(() => {
-        });
+        })
         !noLoading && this.timer.enable('loading');
         this.container.classList.remove('dplayer-paused');
         this.container.classList.add('dplayer-playing');
@@ -254,6 +262,7 @@ class DPlayer {
     }
 
     switchVolumeIcon () {
+        if(!this.template.volumeIcon) return
         if (this.volume() >= 0.95) {
             this.template.volumeIcon.innerHTML = this.options.buttons.volumeButton && this.options.buttons.volumeButton.volumeUp || Icons.volumeUp;
         }
@@ -275,7 +284,7 @@ class DPlayer {
             percentage = Math.min(percentage, 1);
             this.bar.set('volume', percentage, 'width');
             const formatPercentage = `${(percentage * 100).toFixed(0)}%`;
-            this.template.volumeBarWrapWrap.dataset.balloon = formatPercentage;
+            this.template.volumeBarWrapWrap && (this.template.volumeBarWrapWrap.dataset.balloon = formatPercentage)
             if (!nostorage) {
                 this.user.set('volume', percentage);
             }

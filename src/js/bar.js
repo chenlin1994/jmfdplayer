@@ -17,7 +17,7 @@ class Bar {
     set (type, percentage, direction) {
         percentage = Math.max(percentage, 0);
         percentage = Math.min(percentage, 1);
-        this.elements[type].style[direction] = percentage * 100 + '%';
+        this.elements[type] && (this.elements[type].style[direction] = percentage * 100 + '%')
     }
 
     get (type) {

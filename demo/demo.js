@@ -103,7 +103,7 @@ function initPlayers () {
                     name: '标清',
                     type: 'flv',
                     // url: '/wpdt/live1.m3u8'
-                    url:'https://liveplay.qiuhui.com/live/190641.flv'
+                    url:'https://qh.lanhuzb.xyz/live/stream20000722.flv?txSecret=3cc4cdcb4069d7fcc9615656817516eb&txTime=5f814864'
                     // url:'https://liveplay.qiuhui.com/live/190628.m3u8'
                 },
                 // {
