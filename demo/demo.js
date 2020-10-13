@@ -98,31 +98,34 @@ function initPlayers () {
             // qualityCustomer:{}
         },
         video: {
-            quality: [
-                {
-                    name: '标清',
-                    type: 'flv',
-                    // url: '/wpdt/live1.m3u8'
-                    url:'https://qh.lanhuzb.xyz/live/stream20000722.flv?txSecret=3cc4cdcb4069d7fcc9615656817516eb&txTime=5f814864'
-                    // url:'https://liveplay.qiuhui.com/live/190628.m3u8'
-                },
-                // {
-                //     name: '高清',
-                //     type: 'flv',
-                //     url: 'https://liveplay.qiuhui.com/live/100186.flv'
-                // },
-                // {
-                //     name: '超清',
-                //     type: 'hls',
-                //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=203831&line=0'
-                // }
-            ],
-            defaultQuality: 0,
-            defaultLine: 0,
-            line:[
-                {default_status:1, line_id:0, line_name:'主线路', need_login:0},
-                {default_status:0, line_id:1, line_name:'备用线路1', need_login:0}
-            ]
+          type: 'hls',
+          // url: '/wpdt/live1.m3u8'
+          url:'https://txplay.qiuhui.com/live/155106914.m3u8',
+            // quality: [
+            //     {
+            //         name: '标清',
+            //         type: 'hls',
+            //         // url: '/wpdt/live1.m3u8'
+            //         url:'https://txplay.qiuhui.com/live/155106914.m3u8'
+            //         // url:'https://liveplay.qiuhui.com/live/190628.m3u8'
+            //     },
+            //     // {
+            //     //     name: '高清',
+            //     //     type: 'flv',
+            //     //     url: 'https://liveplay.qiuhui.com/live/100186.flv'
+            //     // },
+            //     // {
+            //     //     name: '超清',
+            //     //     type: 'hls',
+            //     //     url: 'https://gw.sit.qiuhui.com/jmfen-live/v2.3/room/stream/distribute?format=3&agreement=2&transcod=3&room_id=203831&line=0'
+            //     // }
+            // ],
+            // defaultQuality: 0,
+            // defaultLine: 0,
+            // line:[
+            //     {default_status:1, line_id:0, line_name:'主线路', need_login:0},
+            //     {default_status:0, line_id:1, line_name:'备用线路1', need_login:0}
+            // ]
         }
     };
     const options1 = {
